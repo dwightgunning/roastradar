@@ -1,0 +1,17 @@
+<div data-sticky-container>
+    <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text">
+          <h1><a [routerLink]="''">Roast Radar</a></h1>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="dropdown menu">
+        <li><a class="hvr-line" [routerLink]="''" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active-link">Roasters</a></li>
+        <li><a class="hvr-line"  [routerLink]="'about'" routerLinkActive="active-link">About</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

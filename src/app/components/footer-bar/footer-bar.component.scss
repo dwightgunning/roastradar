@@ -1,0 +1,17 @@
+@import '../../../assets/foundation-sites/_settings';
+
+#footer {
+  color: $white;
+  height: 120px;
+  padding-top: 10px;
+  background-color: #7A6856;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+}

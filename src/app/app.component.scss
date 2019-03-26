@@ -1,0 +1,21 @@
+@import '../assets/foundation-sites/_settings';
+
+.off-canvas-wrapper {
+    overflow: visible;
+}
+
+.off-canvas-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+nav, footer {
+    flex-shrink: 0;
+}
+
+main {
+    flex: 1 0 auto;
+    margin-top: rem-calc(40px);
+    margin-bottom: rem-calc(40px);
+}

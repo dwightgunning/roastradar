@@ -1,0 +1,28 @@
+@import '../../../assets/foundation-sites/_settings';
+
+.top-bar {
+  color: $white;
+  font-weight: 400;
+
+  a {
+    color: $white;
+  }
+
+  .top-bar-right {
+    li:hover, a.active-link {
+      background: rgba(255,255,255,0.5);
+    }
+  }
+
+  .top-bar-right {
+    a.active-link {
+      background: rgba(255,255,255,0.25);
+    }
+  }
+
+  li.menu-text h1 > a {
+    color: $white;
+    font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
+  }
+
+}
