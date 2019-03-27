@@ -1,2 +1,19 @@
 <h1>Roast Radar</h1>
 <p class="lead">Specialty Coffee: <em>near</em>-est and <em>best</em>-est.</p>
+<agm-map
+  [disableDefaultUI]="true"
+  [latitude]="lat"
+  [longitude]="lng"
+  [streetViewControl]="false"
+  [styles]="mapStyles"
+  [zoom]="2"
+  [zoomControl]="false">
+
+    <agm-marker
+      *ngFor="let roaster of roasters"
+      [latitude]="roaster.location.lat"
+      [longitude]="roaster.location.lng"
+      [title]="roaster.name + ', ' + roaster.city"
+      [iconUrl]="markerImageDefault">
+    </agm-marker>
+</agm-map>
