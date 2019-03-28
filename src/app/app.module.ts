@@ -12,6 +12,8 @@ import { HomeComponent } from './components/screens/home/home.component';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 import { AboutComponent } from './components/screens/about/about.component';
+import { RoasterDetailsComponent } from './components/roaster-details/roaster-details.component';
+import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AboutComponent } from './components/screens/about/about.component';
     HomeComponent,
     TopNavBarComponent,
     FooterBarComponent,
-    AboutComponent
+    AboutComponent,
+    RoasterDetailsComponent,
+    EncodeURIComponentPipe
   ],
   imports: [
     BrowserModule,

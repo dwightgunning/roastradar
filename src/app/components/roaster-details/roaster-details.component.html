@@ -1,0 +1,24 @@
+<div *ngIf="roaster">
+  <h2>{{ roaster.name }}</h2>
+  <div *ngIf="roaster.googlePlace">
+    <p>
+      {{ roaster.googlePlace.formatted_address }}
+    </p>
+    <p>
+      <strong>Rating</strong>: {{ roaster.googlePlace.rating }} ({{ roaster.googlePlace.user_ratings_total }} reviews)
+    </p>
+
+    <p *ngIf="roaster.googlePlace.opening_hours.open_now">
+      <strong>Open now</strong>
+    </p>
+
+    <strong>Opening times</strong>:
+    <p *ngFor="let opening_time of roaster.googlePlace.opening_hours.weekday_text">
+      {{ opening_time }}
+    </p>
+
+    <p>
+      <span *ngIf="roaster.website"><a href="{{ roaster.website }}" target="_blank" rel="nofollow">Visit their website <i class="fas fa-external-link-alt"></i></a> | </span><a href="https://www.google.com/maps/dir/?api=1&destination={{ roaster.googlePlace.formatted_address | encodeURIComponent }}&destination_place_id={{ roaster.googlePlaceId }}">Get directions <i class="fas fa-external-link-alt"></i></a> | <a href="{{ roaster.googlePlace.url }}" target="_blank" rel="nofollow">More on Google Places <i class="fas fa-external-link-alt"></i></a>
+    </p>
+  </div>
+</div>

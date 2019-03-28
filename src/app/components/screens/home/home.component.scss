@@ -1,3 +1,19 @@
-agm-map {
-  height: 600px;
+#map {
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  agm-map {
+    display: block;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1024px;
+  }
+}
+
+#hiddenMap {
+    position: absolute;
+    height: 1px;
+    top: -9999px;
+    width: 1px;
 }

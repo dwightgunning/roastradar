@@ -5,13 +5,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AgmCoreModule } from '@agm/core';
 
+import { AboutComponent } from './components/screens/about/about.component';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { HomeComponent } from './components/screens/home/home.component';
-import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
-import { AboutComponent } from './components/screens/about/about.component';
-
+import { HomeComponent } from './components/screens/home/home.component';
+import { RoasterDetailsComponent } from './components/roaster-details/roaster-details.component';
+import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
+import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,7 +29,9 @@ describe('AppComponent', () => {
         HomeComponent,
         TopNavBarComponent,
         FooterBarComponent,
-        AboutComponent
+        AboutComponent,
+        EncodeURIComponentPipe,
+        RoasterDetailsComponent
       ],
       providers: [
         {provide: APP_BASE_HREF, useValue: '/'},

@@ -1,3 +1,5 @@
+import { GooglePlace } from './google-place';
+
 export class Roaster {
   city: string;
   location: {
@@ -7,6 +9,7 @@ export class Roaster {
   name: string;
   website?: string;
   googlePlaceId?: string;
+  googlePlace?: GooglePlace;
   createdAt: Date;
   modifiedAt: Date;
 }

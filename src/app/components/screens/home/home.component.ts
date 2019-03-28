@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -12,7 +12,7 @@ import { GooglePlace } from '../../../models/google-place';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   markerImageDefault = {
     url: 'assets/images/map-marker-solid.svg',
     scaledSize: {
@@ -20,9 +20,7 @@ export class HomeComponent implements OnInit {
       width: 20
     }
   };
-
   @Input() selectedRoaster: Roaster;
-  @Output() selectedRoasterChange: EventEmitter<Roaster> = new EventEmitter<Roaster>();
   lat = 35.784;
   lng = -90;
 
@@ -94,13 +92,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
 
-  ngOnInit() { }
-
-  onSelectedRoasterChange(roaster: Roaster) {
-    this.googlePlacesAPIClientService.getPlace(roaster.googlePlaceId)
-      .subscribe((googlePlace: GooglePlace) => {
-        console.log(googlePlace);
-      });
-    this.selectedRoasterChange.emit(roaster);
+  onRoasterClicked(roaster: Roaster) {
+    this.selectedRoaster = roaster;
+    if (!roaster.googlePlace) {
+      this.googlePlacesAPIClientService.getPlace(roaster.googlePlaceId)
+        .subscribe((googlePlace: GooglePlace) => {
+          roaster.googlePlace = googlePlace;
+        });
+    }
   }
 }
