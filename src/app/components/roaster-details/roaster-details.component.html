@@ -18,7 +18,7 @@
     </p>
 
     <p>
-      <span *ngIf="roaster.website"><a href="{{ roaster.website }}" target="_blank" rel="nofollow">Visit their website <i class="fas fa-external-link-alt"></i></a> | </span><a href="https://www.google.com/maps/dir/?api=1&destination={{ roaster.googlePlace.formatted_address | encodeURIComponent }}&destination_place_id={{ roaster.googlePlaceId }}">Get directions <i class="fas fa-external-link-alt"></i></a> | <a href="{{ roaster.googlePlace.url }}" target="_blank" rel="nofollow">More on Google Places <i class="fas fa-external-link-alt"></i></a>
+      <span *ngIf="roaster.website"><a href="{{ roaster.website }}" target="_blank" rel="nofollow">Visit their website <i class="fas fa-external-link-alt"></i></a> | </span><a href="https://www.google.com/maps/dir/?api=1&destination={{ roaster.googlePlace.formatted_address | encodeURIComponent }}&destination_place_id={{ roaster.googlePlaceId }}" target="_blank" rel="nofollow">Get directions <i class="fas fa-external-link-alt"></i></a> | <a href="{{ roaster.googlePlace.url }}" target="_blank" rel="nofollow">More on Google Places <i class="fas fa-external-link-alt"></i></a>
     </p>
   </div>
 </div>
