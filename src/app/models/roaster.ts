@@ -6,4 +6,7 @@ export class Roaster {
   };
   name: string;
   website?: string;
+  googlePlaceId?: string;
+  createdAt: Date;
+  modifiedAt: Date;
 }

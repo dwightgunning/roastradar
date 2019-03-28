@@ -14,6 +14,7 @@
       [latitude]="roaster.location.lat"
       [longitude]="roaster.location.lng"
       [title]="roaster.name + ', ' + roaster.city"
-      [iconUrl]="markerImageDefault">
+      [iconUrl]="markerImageDefault"
+      (markerClick)="onSelectedRoasterChange(roaster)">
     </agm-marker>
 </agm-map>

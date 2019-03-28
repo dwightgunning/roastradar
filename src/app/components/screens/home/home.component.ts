@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
+
+import { GooglePlacesAPIClientService } from '../../../services/GooglePlacesAPIClientService/google-places-api-client.service';
+
 import { Roaster } from '../../../models/roaster';
+import { GooglePlace } from '../../../models/google-place';
 
 @Component({
   selector: 'app-home',
@@ -13,41 +17,52 @@ export class HomeComponent implements OnInit {
     url: 'assets/images/map-marker-solid.svg',
     scaledSize: {
       height: 20,
-      width:20
+      width: 20
     }
   };
 
-  lat: number = 35.784;
-  lng: number = -90;
+  @Input() selectedRoaster: Roaster;
+  @Output() selectedRoasterChange: EventEmitter<Roaster> = new EventEmitter<Roaster>();
+  lat = 35.784;
+  lng = -90;
 
   roasters: Array<Roaster> = [
     {
-      city: "Amsterdam",
+      city: 'Amsterdam',
+      createdAt: new Date(1553696175082),
+      googlePlaceId: 'ChIJobHenXUJxkcRwZXqlB-XlzA',
       location: {
         lat: 52.368894,
         lng: 4.8814448
       },
-      name: "Screaming Beans"
+      modifiedAt: new Date(1553696175082),
+      name: 'Screaming Beans',
     },
     {
-      city: "Antwerp",
+      city: 'Antwerp',
+      createdAt: new Date(1553696175082),
+      googlePlaceId: 'ChIJl_Tey-T2w0cRva2dvNTHwDg',
       location: {
         lat: 51.2114802,
         lng: 4.4051755
       },
-      name: "Caffènation",
-      website: "https://caffenation.be/"
+      modifiedAt: new Date(1553696175082),
+      name: 'Caffènation Antwerp City Center',
+      website: 'https://caffenation.be/',
     },
     {
-      city: "Berlin",
+      city: 'Berlin',
+      createdAt: new Date(1553696175082),
+      googlePlaceId: 'ChIJe-xsRDFOqEcR9oMD5MR9wCo',
       location: {
         lat: 52.5034573,
         lng: 13.4202408
       },
-      name: "Bonanza Coffee Roasters",
-      website: "https://bonanzacoffee.de"
+      name: 'Bonanza Coffee Roasters',
+      modifiedAt: new Date(1553696175082),
+      website: 'https://bonanzacoffee.de',
     },
-  ]
+  ];
 
   mapStyles = [
     {
@@ -60,13 +75,13 @@ export class HomeComponent implements OnInit {
     {
       featureType: 'water',
       stylers: [
-        { 'color': '#C0C0C0' }
+        { color: '#C0C0C0' }
       ]
     },
     {
       featureType: 'landscape',
       stylers: [
-        { 'color': '#E0E0E0' }
+        { color: '#E0E0E0' }
       ]
     },
     {
@@ -77,9 +92,15 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  onSelectedRoasterChange(roaster: Roaster) {
+    this.googlePlacesAPIClientService.getPlace(roaster.googlePlaceId)
+      .subscribe((googlePlace: GooglePlace) => {
+        console.log(googlePlace);
+      });
+    this.selectedRoasterChange.emit(roaster);
   }
-
 }

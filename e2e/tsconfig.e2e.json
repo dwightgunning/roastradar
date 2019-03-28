@@ -5,6 +5,7 @@
     "module": "commonjs",
     "target": "es5",
     "types": [
+      "googlemaps",
       "jasmine",
       "jasminewd2",
       "node"
