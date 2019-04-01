@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, EventEmitter, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, ElementRef, Input, OnInit } from '@angular/core';
 
 declare let $: any;
 
 import { AgmCoreModule } from '@agm/core';
 
 import { GooglePlacesAPIClientService } from '../../../services/GooglePlacesAPIClient/google-places-api-client.service';
-
+import { RoastersService } from '../../../services/Roasters/roasters.service';
 import { Roaster } from '../../../models/roaster';
 import { GooglePlace } from '../../../models/google-place';
 
@@ -14,7 +14,8 @@ import { GooglePlace } from '../../../models/google-place';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  roasters: Array<Roaster>;
   roasterDetailsCanvas: any;
   markerImageDefault = {
     url: 'assets/images/map-marker-solid.svg',
@@ -26,44 +27,6 @@ export class HomeComponent implements AfterViewInit {
   @Input() selectedRoaster: Roaster;
   lat = 35.784;
   lng = -90;
-
-  roasters: Array<Roaster> = [
-    {
-      city: 'Amsterdam',
-      createdAt: new Date(1553696175082),
-      googlePlaceId: 'ChIJobHenXUJxkcRwZXqlB-XlzA',
-      location: {
-        lat: 52.368894,
-        lng: 4.8814448
-      },
-      modifiedAt: new Date(1553696175082),
-      name: 'Screaming Beans',
-    },
-    {
-      city: 'Antwerp',
-      createdAt: new Date(1553696175082),
-      googlePlaceId: 'ChIJl_Tey-T2w0cRva2dvNTHwDg',
-      location: {
-        lat: 51.2114802,
-        lng: 4.4051755
-      },
-      modifiedAt: new Date(1553696175082),
-      name: 'Caffènation Antwerp City Center',
-      website: 'https://caffenation.be/',
-    },
-    {
-      city: 'Berlin',
-      createdAt: new Date(1553696175082),
-      googlePlaceId: 'ChIJe-xsRDFOqEcR9oMD5MR9wCo',
-      location: {
-        lat: 52.5034573,
-        lng: 13.4202408
-      },
-      name: 'Bonanza Coffee Roasters',
-      modifiedAt: new Date(1553696175082),
-      website: 'https://bonanzacoffee.de',
-    },
-  ];
 
   mapStyles = [
     {
@@ -93,7 +56,16 @@ export class HomeComponent implements AfterViewInit {
     }
   ];
 
-  constructor(private el: ElementRef, private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
+  constructor(
+    private el: ElementRef,
+    private roastersService: RoastersService,
+    private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
+
+  ngOnInit() {
+    this.roastersService.getRoasters().subscribe(response => {
+      this.roasters = response;
+    });
+  }
 
   ngAfterViewInit() {
     $(this.el.nativeElement).foundation();
