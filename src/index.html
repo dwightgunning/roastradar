@@ -26,8 +26,69 @@
   <meta name="msapplication-TileImage" content="/assets/images/favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <meta name="msapplication-TileImage" content="/assets/images/favicons/favicon-144x144-precomposed.png">
+
+  <style>
+    html {
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+    }
+    .c {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    .i {
+      margin: auto;
+    }
+  @keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0; }
+    100% { opacity:1; }
+  }
+
+  .spinner {
+     -webkit-animation: flickerAnimation 2s infinite;
+     -moz-animation: flickerAnimation 2s infinite;
+     -o-animation: flickerAnimation 2s infinite;
+      animation: flickerAnimation 2s infinite;
+  }
+
+  </style>
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="c">
+        <div class="i">
+          <div class="spinner">
+            <svg width="41" height="48" viewBox="0 0 641 448">
+              <path fill="#7A6856" d="M193,352 L385,352 C438,352 481,309 481,256 L513,256 C583.6,256 641,198.6 641,128 C641,57.4 583.6,0 513,0 L121,0 C107.7,0 97,10.7 97,24 L97,256 C97,309 140,352 193,352 Z M513,64 C548.3,64 577,92.7 577,128 C577,163.3 548.3,192 513,192 L481,192 L481,64 L513,64 Z M560.7,448 L49.3,448 C1.7,448 -11.7,384 13.3,384 L596.6,384 C621.6,384 608.4,448 560.7,448 L560.7,448 Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+  </app-root>
 </body>
 </html>
