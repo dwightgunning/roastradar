@@ -4,7 +4,7 @@ declare let $: any;
 
 import { AgmCoreModule } from '@agm/core';
 
-import { GooglePlacesAPIClientService } from '../../../services/GooglePlacesAPIClientService/google-places-api-client.service';
+import { GooglePlacesAPIClientService } from '../../../services/GooglePlacesAPIClient/google-places-api-client.service';
 
 import { Roaster } from '../../../models/roaster';
 import { GooglePlace } from '../../../models/google-place';
