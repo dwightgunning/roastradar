@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, ElementRef, Input } from '@angular/core';
+
+declare let $: any;
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -12,7 +14,8 @@ import { GooglePlace } from '../../../models/google-place';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
+  roasterDetailsCanvas: any;
   markerImageDefault = {
     url: 'assets/images/map-marker-solid.svg',
     scaledSize: {
@@ -90,9 +93,16 @@ export class HomeComponent {
     }
   ];
 
-  constructor(private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
+  constructor(private el: ElementRef, private googlePlacesAPIClientService: GooglePlacesAPIClientService) { }
+
+  ngAfterViewInit() {
+    $(this.el.nativeElement).foundation();
+    this.roasterDetailsCanvas = $('#roaster-details-canvas');
+  }
 
   onRoasterClicked(roaster: Roaster) {
+    this.roasterDetailsCanvas.foundation('open');
+
     this.selectedRoaster = roaster;
     if (!roaster.googlePlace) {
       this.googlePlacesAPIClientService.getPlace(roaster.googlePlaceId)

@@ -1,15 +1,5 @@
 @import '../assets/foundation-sites/_settings';
 
-.off-canvas-wrapper {
-    overflow: visible;
-}
-
-.off-canvas-content {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
 nav, footer {
     flex-shrink: 0;
 }

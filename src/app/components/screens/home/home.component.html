@@ -1,23 +1,25 @@
 <h1 class="lead">Specialty Coffee: Nearest and best-est.</h1>
-<section id="map">
-  <agm-map
-    [disableDefaultUI]="true"
-    [latitude]="lat"
-    [longitude]="lng"
-    [streetViewControl]="false"
-    [styles]="mapStyles"
-    [zoom]="2"
-    [zoomControl]="false">
-
-      <agm-marker
-        *ngFor="let roaster of roasters"
-        [latitude]="roaster.location.lat"
-        [longitude]="roaster.location.lng"
-        [title]="roaster.name + ', ' + roaster.city"
-        [iconUrl]="markerImageDefault"
-        (markerClick)="onRoasterClicked(roaster)">
-      </agm-marker>
-  </agm-map>
-</section>
-<iframe id="hiddenMap"></iframe>
-<app-roaster-details  [(roaster)]="selectedRoaster"></app-roaster-details>
+<div id="map" class="off-canvas-wrapper">
+  <div id="roaster-details-canvas" class="off-canvas-absolute position-left" data-off-canvas data-close-on-click="false" data-auto-focus="false" data-content-overlay="false">
+    <app-roaster-details  [(roaster)]="selectedRoaster"></app-roaster-details>
+  </div>
+  <div data-off-canvas-content>
+    <agm-map
+      [disableDefaultUI]="true"
+      [latitude]="lat"
+      [longitude]="lng"
+      [streetViewControl]="false"
+      [styles]="mapStyles"
+      [zoom]="2"
+      [zoomControl]="false">
+        <agm-marker
+          *ngFor="let roaster of roasters"
+          [latitude]="roaster.location.lat"
+          [longitude]="roaster.location.lng"
+          [title]="roaster.name + ', ' + roaster.city"
+          [iconUrl]="markerImageDefault"
+          (markerClick)="onRoasterClicked(roaster)">
+        </agm-marker>
+    </agm-map>
+  </div>
+</div>

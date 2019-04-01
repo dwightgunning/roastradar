@@ -1,0 +1,23 @@
+@import '../../../assets/foundation-sites/_settings';
+
+.roaster-details {
+  background-color: $white;
+  height: 100%;
+  padding-top: 50px;
+
+  h3 {
+    font-size: rem-calc(map-deep-get($header-styles, small, h3, font-size));
+  }
+  h4 {
+    font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
+  }
+
+  p {
+    line-height: 1.2;
+    font-size: $small-font-size;
+  }
+
+  .address {
+    font-style: italic;
+  }
+}
