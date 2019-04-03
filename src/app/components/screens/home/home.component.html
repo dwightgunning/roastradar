@@ -14,8 +14,8 @@
       [zoomControl]="false">
         <agm-marker
           *ngFor="let roaster of roasters"
-          [latitude]="roaster.location.lat"
-          [longitude]="roaster.location.lng"
+          [latitude]="roaster.lat"
+          [longitude]="roaster.lng"
           [title]="roaster.name + ', ' + roaster.city"
           [iconUrl]="markerImageDefault"
           (markerClick)="onRoasterClicked(roaster)">

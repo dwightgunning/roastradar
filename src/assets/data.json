@@ -1,37 +1,321 @@
 [
   {
-    "city": "Amsterdam",
-    "createdAt": 1553696175082,
+    "name": "Screaming Beans",
+    "website": "",
     "googlePlaceId": "ChIJobHenXUJxkcRwZXqlB-XlzA",
-    "location": {
-      "lat": 52.368894,
-      "lng": 4.8814448
-    },
-    "modifiedAt": 1553696175082,
-    "name": "Screaming Beans"
+    "lat": 52.368894,
+    "lng": 4.8814448,
+    "city": "Amsterdam",
+    "country": "The Netherlands",
+    "createdAt": 1553696175082,
+    "modifiedAt": 1553696175082
   },
   {
-    "city": "Antwerp",
-    "createdAt": 1553696175082,
-    "googlePlaceId": "ChIJl_Tey-T2w0cRva2dvNTHwDg",
-    "location": {
-      "lat": 51.2114802,
-      "lng": 4.4051755
-    },
-    "modifiedAt": 1553696175082,
     "name": "Caffènation Antwerp City Center",
-    "website": "https://caffenation.be/"
+    "website": "https://caffenation.be",
+    "googlePlaceId": "ChIJl_Tey-T2w0cRva2dvNTHwDg",
+    "lat": 51.2114802,
+    "lng": 4.4051755,
+    "city": "Antwerp",
+    "country": "Belgium",
+    "createdAt": 1553696175082,
+    "modifiedAt": 1553696175082
   },
   {
-    "city": "Berlin",
-    "createdAt": 1553696175082,
-    "googlePlaceId": "ChIJe-xsRDFOqEcR9oMD5MR9wCo",
-    "location": {
-      "lat": 52.5034573,
-      "lng": 13.4202408
-    },
     "name": "Bonanza Coffee Roasters",
-    "modifiedAt": 1553696175082,
-    "website": "https://bonanzacoffee.de"
+    "website": "https://bonanzacoffee.de",
+    "googlePlaceId": "ChIJe-xsRDFOqEcR9oMD5MR9wCo",
+    "lat": 52.5034573,
+    "lng": 13.4202408,
+    "city": "Berlin",
+    "country": "Germany",
+    "createdAt": 1553696175082,
+    "modifiedAt": 1553696175082
+  },
+  {
+    "name": "Espressofabriek",
+    "website": "http://www.espressofabriek.nl",
+    "googlePlaceId": "ChIJZ161d9UJxkcRHO367_PpTH8",
+    "lat": 52.3861402,
+    "lng": 4.8697432,
+    "city": "Amsterdam",
+    "country": "The Netherlands",
+    "createdAt": 1553696175082,
+    "modifiedAt": 1553696175082
+  },
+  {
+    "name": "Lot Sixy One",
+    "website": "https://lotsixtyone.com",
+    "googlePlaceId": "ChIJEfmjb-AJxkcRqdnhOTbEetc",
+    "lat": 52.366834,
+    "lng": 4.8681123,
+    "city": "Amsterdam",
+    "country": "The Netherlands",
+    "createdAt": 1554191985052,
+    "modifiedAt": 1554191985052
+  },
+  {
+    "name": "Bocca Coffee",
+    "website": "https://www.bocca.nl/",
+    "googlePlaceId": "ChIJ18bKQdwJxkcReqmMFkEeavw",
+    "lat": 52.36445,
+    "lng": 4.8846387,
+    "city": "Amsterdam",
+    "country": "The Netherlands",
+    "createdAt": 1553696175082,
+    "modifiedAt": 1553696175082
+  },
+  {
+    "name": "Street Coffee Roasters",
+    "website": "https://www.facebook.com/streetcoffeeroasters/",
+    "googlePlaceId": "ChIJPclesiNHRkcROTvGTIv2qmU",
+    "lat": 47.053642,
+    "lng": 21.9289221,
+    "city": "Oradea",
+    "country": "Romania",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Olivo",
+    "website": "http://www.olivocaffe.com",
+    "googlePlaceId": "ChIJxeo_kCcMSUcRjOAJ3W7T5Ug",
+    "lat": 46.7696608,
+    "lng": 23.5897646,
+    "city": "Cluj-Napoca",
+    "country": "Romania",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Garage Cafe",
+    "website": "http://garagecafetm.com",
+    "googlePlaceId": "ChIJPwQafn9nRUcRkLSNk_cdAgA",
+    "lat": 45.7573745,
+    "lng": 21.2279617,
+    "city": "Timisoara",
+    "country": "Romania",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Ovride",
+    "website": "http://ovride.coffee",
+    "googlePlaceId": "ChIJnVcx9n9dRUcRFzibCQkeSSM",
+    "lat": 45.7543236,
+    "lng": 21.2253707,
+    "city": "Timisoara",
+    "country": "Romania",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Origo",
+    "website": "https://origocoffee.ro",
+    "googlePlaceId": "ChIJQbgapEH_sUAR__vch8jUosQ",
+    "lat": 44.4331794,
+    "lng": 26.0946912,
+    "city": "Bucharest",
+    "country": "Romania",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Vagabond",
+    "website": "http://www.vagabond.london",
+    "googlePlaceId": "ChIJ_eyObnAbdkgR1zIHidpf5-8",
+    "lat": 51.5482302,
+    "lng": -0.1062214,
+    "city": "London",
+    "country": "England",
+    "createdAt": 1554189219618,
+    "modifiedAt": 1554189219618
+  },
+  {
+    "name": "Belga & Co",
+    "website": "https://www.belgacoffee.com",
+    "googlePlaceId": "ChIJaZ_stozEw0cRf17ikvAKt3g",
+    "lat": 50.8243579,
+    "lng": 4.3575604,
+    "city": "Brussels",
+    "country": "Belgium",
+    "createdAt": 1554189405756,
+    "modifiedAt": 1554189405756
+  },
+  {
+    "name": "Lehmus",
+    "website": "https://lehmusroastery.com",
+    "googlePlaceId": "ChIJ8RVqnb6VkEYRJDqqRHUP7KI",
+    "lat": 61.06783,
+    "lng": 28.1821734,
+    "city": "Lappeenranta",
+    "country": "Finland",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Kaffa Roastery",
+    "website": "https://www.kaffaroastery.fi",
+    "googlePlaceId": "ChIJx7csnrYLkkYRHu4tXVZYXP0",
+    "lat": 60.1585083,
+    "lng": 24.9319137,
+    "city": "Helsinki",
+    "country": "Finland",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "J Hornig",
+    "website": "https://www.jhornig.com",
+    "googlePlaceId": "ChIJ26As-Ak1bkcRWFcYnb3qPoE",
+    "lat": 47.074539,
+    "lng": 15.411123,
+    "city": "Graz",
+    "country": "Austria",
+    "createdAt": 1554295033843,
+    "modifiedAt": 1554295033843
+  },
+  {
+    "name": "Tim Wendelboe",
+    "website": "https://www.timwendelboe.no",
+    "googlePlaceId": "ChIJ9SVQVG9uQUYRh2k5AHiREC8",
+    "lat": 59.9233736,
+    "lng": 10.7535111,
+    "city": "Olso",
+    "country": "Norway",
+    "createdAt": 1554300132312,
+    "modifiedAt": 1554300132312
+  },
+  {
+    "name": "Boxcar Coffee Roasters",
+    "website": "https://www.boxcarcoffeeroasters.com",
+    "googlePlaceId": "ChIJX-Z3Mirsa4cR9WwdAf6suU0",
+    "lat": 40.0198129,
+    "lng": -105.2737357,
+    "city": "Boulder",
+    "country": "United States",
+    "createdAt": 1554297635192,
+    "modifiedAt": 1554297635192
+  },
+  {
+    "name": "Sightglass Coffee",
+    "website": "https://www.sightglasscoffee.com",
+    "googlePlaceId": "ChIJf-V9OIKAhYARu8bBG2S6RME",
+    "lat": 37.7759351,
+    "lng": -122.4177779,
+    "city": "San Francisco",
+    "country": "United States",
+    "createdAt": 1554297635192,
+    "modifiedAt": 1554297635192
+  },
+  {
+    "name": "Phil & Sebastian",
+    "website": "https://philsebastian.com",
+    "googlePlaceId": "ChIJzd0u2lRlcVMRoSTjaEEDL_E",
+    "lat": 51.0478414,
+    "lng": -114.0520667,
+    "city": "Calgary",
+    "country": "Canada",
+    "createdAt": 1554297635192,
+    "modifiedAt": 1554297635192
+  },
+  {
+    "name": "Onyx Coffee Lab",
+    "website": "https://www.onyxcoffeelab.com",
+    "googlePlaceId": "ChIJPzrMCq9uyYcRN3-RrFuTlW0",
+    "lat": 35.591133,
+    "lng": -93.581968,
+    "city": "Fayetteville",
+    "country": "United States",
+    "createdAt": 1554298420931,
+    "modifiedAt": 1554298420931
+  },
+  {
+    "name": "Chromatic Coffee Co.",
+    "website": "http://www.chromaticcoffee.com",
+    "googlePlaceId": "ChIJ9439Rn61j4AR5r2Gf5leQqw",
+    "lat": 37.3240018,
+    "lng": -121.9966566,
+    "city": "Santa Clara",
+    "country": "United States",
+    "createdAt": 1554298420931,
+    "modifiedAt": 1554298420931
+  },
+  {
+    "name": "Stumptown Coffee Roasters",
+    "website": "https://www.stumptowncoffee.com",
+    "googlePlaceId": "ChIJe0QQFIaglVQRLZESoeJnAoc",
+    "lat": 45.5054115,
+    "lng": -122.6177238,
+    "city": "Portland",
+    "country": "United States",
+    "createdAt": 1554298733757,
+    "modifiedAt": 1554298733757
+  },
+  {
+    "name": "Madcap",
+    "website": "https://madcapcoffee.com",
+    "googlePlaceId": "ChIJJQ1mxcWtGYgRtl2dJspexG0",
+    "lat": 42.9651596,
+    "lng": -85.672182,
+    "city": "Grand Rapids",
+    "country": "United States",
+    "createdAt": 1554298733757,
+    "modifiedAt": 1554298733757
+  },
+  {
+    "name": "Slate Coffee Roasters",
+    "website": "https://slatecoffee.com",
+    "googlePlaceId": "ChIJwTxsg7pqkFQRiZGAJuyQsic",
+    "lat": 47.6025409,
+    "lng": -122.3324988,
+    "city": "Seattle",
+    "country": "United States",
+    "createdAt": 1554299966021,
+    "modifiedAt": 1554299966021
+  },
+  {
+    "name": "Chromatic Coffee Co.",
+    "website": "http://www.chromaticcoffee.com",
+    "googlePlaceId": "ChIJZ9UiKr3Mj4ARKLHHtnRw6ig",
+    "lat": 37.3369022,
+    "lng": -121.8921517,
+    "city": "San Jose",
+    "country": "United States",
+    "createdAt": 1554299966021,
+    "modifiedAt": 1554299966021
+  },
+  {
+    "name": "Blackboard",
+    "website": "http://www.blackboardcoffee.com.au",
+    "googlePlaceId": "ChIJE-ooHmgDkWsRnheSWoxqKMo",
+    "lat": -28.0774698,
+    "lng": 153.4134909,
+    "city": "Gold Coast",
+    "country": "Australia",
+    "createdAt": 1554299557864,
+    "modifiedAt": 1554299557864
+  },
+{
+    "name": "Fábrica Coffee Roasters",
+    "website": "https://www.fabricacoffeeroasters.com/",
+    "googlePlaceId": "ChIJ52dsQ340GQ0RYVWJDH-0lMo",
+    "lat": 38.7093723,
+    "lng": -9.145847,
+    "city": "Lisbon",
+    "country": "Portugal",
+    "createdAt": 1554308421734,
+    "modifiedAt": 1554308421734
+  },
+  {
+    "name": "Right Side Coffee",
+    "website": "https://www.rightsidecoffee.com/",
+    "googlePlaceId": "ChIJZS48OLeCpBIRAxYzqXhtN28",
+    "lat": 41.2796379,
+    "lng": 1.9774831,
+    "city": "Barcelona",
+    "country": "Spain",
+    "createdAt": 1554308421734,
+    "modifiedAt": 1554308421734
   }
 ]
