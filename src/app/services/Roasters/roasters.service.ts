@@ -13,7 +13,7 @@ export class RoastersService {
   constructor(private httpClient: HttpClient) { }
 
   public getRoasters(): Observable<Roaster[]> {
-    const dataUrl = "data.json";
+    const dataUrl = 'data.json';
     return from(this.httpClient.get<Roaster[]>(dataUrl));
   }
 }

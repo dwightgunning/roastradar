@@ -17,7 +17,7 @@ import { ConnectivityService } from '../../../services/connectivity/connectivity
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   mode = 'map';
-  isConnected: Boolean;
+  isConnected: boolean;
   roastersByCountry;
   roasters: Array<Roaster>;
   roasterDetailsCanvas: any;
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.isConnected = isConnected;
       // TODO: prompt the user to confirm they want to toggle the map/list
       this.mode = this.isConnected ? 'map' : 'list';
-    })
+    });
   }
 
   ngAfterViewInit() {
