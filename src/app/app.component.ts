@@ -4,7 +4,6 @@ import * as WebFont from 'webfontloader';
 
 declare let $: any;
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,9 +12,10 @@ declare let $: any;
 export class AppComponent implements OnInit {
   title = 'Roast Radar';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+
     $(document).foundation();
 
     WebFont.load({

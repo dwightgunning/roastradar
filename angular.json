@@ -23,8 +23,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/data.json",
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss"
@@ -37,6 +39,31 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "stage": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -59,7 +86,8 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -69,6 +97,9 @@
             "browserTarget": "roastradar:build"
           },
           "configurations": {
+            "stage": {
+              "browserTarget": "roastradar:build:stage"
+            },
             "production": {
               "browserTarget": "roastradar:build:production"
             }
@@ -96,8 +127,10 @@
               "./node_modules/webfontloader/webfontloader.js"
             ],
             "assets": [
+              "src/data.json",
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.json"
             ]
           }
         },
@@ -127,6 +160,9 @@
             "devServerTarget": "roastradar:serve"
           },
           "configurations": {
+            "stage": {
+              "devServerTarget": "roastradar:serve:stage"
+            },
             "production": {
               "devServerTarget": "roastradar:serve:production"
             }

@@ -23,12 +23,12 @@
   },
   {
     "name": "Bonanza Coffee Roasters",
-    "website": "https://bonanzacoffee.de",
     "googlePlaceId": "ChIJe-xsRDFOqEcR9oMD5MR9wCo",
     "lat": 52.5034573,
     "lng": 13.4202408,
     "city": "Berlin",
     "country": "Germany",
+    "website": "https://bonanzacoffee.de",
     "createdAt": 1553696175082,
     "modifiedAt": 1553696175082
   },
