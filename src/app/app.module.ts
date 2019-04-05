@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AgmCoreModule } from '@agm/core';
@@ -17,6 +18,7 @@ import { RoasterDetailsComponent } from './components/roaster-details/roaster-de
 import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
 import { ConnectivityService } from './services/connectivity/connectivity.service';
 import { RoastersService } from './services/roasters/roasters.service';
+import { ContributeComponent } from './components/screens/contribute/contribute.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { RoastersService } from './services/roasters/roasters.service';
     FooterBarComponent,
     AboutComponent,
     RoasterDetailsComponent,
-    EncodeURIComponentPipe
+    EncodeURIComponentPipe,
+    ContributeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { RoastersService } from './services/roasters/roasters.service';
       libraries: ['places']
     }),
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

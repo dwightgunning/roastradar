@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  GOOGLE_MAPS_API_KEY: ''
+  GOOGLE_MAPS_API_KEY: '',
+  CONTRIBUTION_FORM_ENDPOINT: '',
+  CONTRIBUTION_FORM_RECIPIENT: ''
 };
 
 /*

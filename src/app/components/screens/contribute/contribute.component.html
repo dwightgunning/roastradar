@@ -1,0 +1,36 @@
+<h2>Contribute</h2>
+<p>
+  All suggestions and contributions are welcome.
+</p>
+<p>
+  If you know of a great specialty roaster that's missing or there's an error on the site, let us know.
+</p>
+<form (ngSubmit)="submitForm()" #contributeForm="ngForm">
+  <div class="grid-x grid-padding-x">
+    <div class="small-3 cell">
+      <label for="name" class="text-right middle">Name:</label>
+    </div>
+    <div class="small-9 cell">
+      <input id="name" name="name" type="text" [(ngModel)]="submission.name" required/>
+    </div>
+    <div class="small-3 cell">
+      <label for="email" class="text-right middle">Email:</label>
+    </div>
+    <div class="small-9 cell">
+      <input id="email" name="email" type="email" [(ngModel)]="submission.email" required/>
+    </div>
+    <div class="small-3 cell">
+      <label for="message" class="text-right middle">Message:</label>
+    </div>
+    <div class="small-9 cell">
+      <textarea id="message" name="message" [(ngModel)]="submission.message" required></textarea>
+    </div>
+    <div class="small-12 cell">
+      <button type="submit" class="button" [disabled]="!contributeForm.form.valid">Submit</button>
+      {{ submissionResponse }}
+    </div>
+  </div>
+</form>
+<p>
+  The website code is open source. Check out the <a href="https://github.com/dwightgunning/roastradar">project</a> and feel free to submit issues or pull requests.
+</p>
