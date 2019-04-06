@@ -20,6 +20,7 @@ import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
 import { ConnectivityService } from './services/connectivity/connectivity.service';
 import { RoastersService } from './services/roasters/roasters.service';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
+import { GeolocationService } from './services/geolocation/geolocation.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ContributeComponent } from './components/screens/contribute/contribute.
   providers: [
     ConnectivityService,
     GooglePlacesAPIClientService,
-    RoastersService
+    RoastersService,
+    GeolocationService
   ],
   bootstrap: [AppComponent]
 })

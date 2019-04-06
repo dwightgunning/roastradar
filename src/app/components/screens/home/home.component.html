@@ -10,7 +10,8 @@
       [longitude]="lng"
       [streetViewControl]="false"
       [styles]="mapStyles"
-      [zoom]="2"
+      [zoom]="roasterMapZoom"
+      [usePanning]="true"
       [zoomControl]="false">
       <agm-marker-cluster [imagePath]="'/assets/images/map-markers/m'">
         <agm-marker

@@ -9,6 +9,7 @@ import { RoastersService } from '../../../services/roasters/roasters.service';
 import { Roaster } from '../../../models/roaster';
 import { GooglePlace } from '../../../models/google-place';
 import { ConnectivityService } from '../../../services/connectivity/connectivity.service';
+import { GeolocationService } from '../../../services/geolocation/geolocation.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   roastersByCountry;
   roasters: Array<Roaster>;
   roasterDetailsCanvas: any;
+
   markerImageDefault = {
     url: 'assets/images/map-markers/pin-solid.svg',
     scaledSize: {
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @Input() selectedRoaster: Roaster;
   lat = 35.784;
   lng = -90;
+  roasterMapZoom = 2;
 
   mapStyles = [
     {
@@ -64,7 +67,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private el: ElementRef,
     private roastersService: RoastersService,
     private googlePlacesAPIClientService: GooglePlacesAPIClientService,
-    private connectivityService: ConnectivityService) { }
+    private connectivityService: ConnectivityService,
+    private geolocationService: GeolocationService) { }
 
   ngOnInit() {
     if (!this.roasters) {
@@ -83,6 +87,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // TODO: prompt the user to confirm they want to toggle the map/list
       this.mode = this.isConnected ? 'map' : 'list';
     });
+
+    this.geolocationService.locationChange().subscribe(
+      location => {
+        this.lat = location.coords.latitude;
+        this.lng = location.coords.longitude;
+        this.roasterMapZoom = 7;
+      });
   }
 
   ngAfterViewInit() {
