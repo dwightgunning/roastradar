@@ -1740,6 +1740,11 @@ cookie@0.3.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
   integrity sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
 
+cookieconsent@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/cookieconsent/-/cookieconsent-3.1.0.tgz#2c718b304d0e71a6e0d159cac8adf4205fdca152"
+  integrity sha512-FhkOAzZdIVqg7UfPjymgJBA7ZeEjrMgO8RWh+1Z130K7TlJDNnIORMulvqmt66SPyfrUnFB3SYJ55/7EvEcSEA==
+
 copy-concurrently@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/copy-concurrently/-/copy-concurrently-1.0.5.tgz#92297398cae34937fcafd6ec8139c18051f0b5e0"
@@ -4481,6 +4486,11 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
+
+ngx-cookieconsent@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookieconsent/-/ngx-cookieconsent-2.2.0.tgz#a689f738c7085bf43e6d675f318a01cb5e4b6282"
+  integrity sha512-+yxUV8cpKBrsdm8F2K1Bkcv07GM3L86L1gpKOE/y7abWhxuQdjP2e/a56ijsvOTIAqIyWC2EPk/O8xHwnCB+5Q==
 
 nice-try@^1.0.4:
   version "1.0.5"

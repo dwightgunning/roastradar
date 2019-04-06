@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
+
 import * as WebFont from 'webfontloader';
 
 declare let $: any;
@@ -11,8 +13,9 @@ declare let $: any;
 })
 export class AppComponent implements OnInit {
   title = 'Roast Radar';
+  initializeSubscription;
 
-  constructor() {}
+  constructor(private ccService: NgcCookieConsentService) {}
 
   ngOnInit() {
 
@@ -24,4 +27,5 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
 }
