@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   roasters: Array<Roaster>;
   roasterDetailsCanvas: any;
   markerImageDefault = {
-    url: 'assets/images/map-marker-solid.svg',
+    url: 'assets/images/map-markers/pin-solid.svg',
     scaledSize: {
       height: 20,
       width: 20

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { ContributeComponent } from './components/screens/contribute/contribute.
       apiKey: environment.GOOGLE_MAPS_API_KEY,
       libraries: ['places']
     }),
+    AgmJsMarkerClustererModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

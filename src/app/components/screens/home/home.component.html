@@ -12,6 +12,7 @@
       [styles]="mapStyles"
       [zoom]="2"
       [zoomControl]="false">
+      <agm-marker-cluster [imagePath]="'/assets/images/map-markers/m'">
         <agm-marker
           *ngFor="let roaster of roasters"
           [latitude]="roaster.lat"
@@ -20,6 +21,7 @@
           [iconUrl]="markerImageDefault"
           (markerClick)="onRoasterClicked(roaster)">
         </agm-marker>
+      </agm-marker-cluster>
     </agm-map>
   </div>
 </div>
