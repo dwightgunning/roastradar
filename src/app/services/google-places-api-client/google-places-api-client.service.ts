@@ -47,7 +47,7 @@ export class GooglePlacesAPIClientService {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               observer.next(Object.assign({}, result));
             } else {
-                console.log('Error - ', result, ' & Status - ', status);
+                console.log('Error - ', result, ' & Status - ', status); // TODO: Handle error appropriately
                 observer.next({});
             }
             observer.complete();
