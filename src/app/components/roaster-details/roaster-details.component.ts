@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+import { GoogleAnalyticsService } from '../../services/google-analytics/google-analytics.service';
 import { Roaster } from '../../models/roaster';
 
 @Component({
@@ -11,6 +12,11 @@ export class RoasterDetailsComponent {
 
   @Input() roaster: Roaster;
 
-  constructor() { }
+  constructor(private googleAnalyticsService: GoogleAnalyticsService) { }
+
+  onRoasterLinkClick(link) {
+    this.googleAnalyticsService.eventEmitter(
+      'roasters', 'link-click-' + link, this.roaster.googlePlaceId, 1);
+  }
 
 }

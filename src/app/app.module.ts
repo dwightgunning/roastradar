@@ -24,6 +24,7 @@ import { RoastersService } from './services/roasters/roasters.service';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
 import { GeolocationService } from './services/geolocation/geolocation.service';
 import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
+import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -81,9 +82,10 @@ const cookieConfig: NgcCookieConsentConfig = {
   ],
   providers: [
     ConnectivityService,
+    GeolocationService,
+    GoogleAnalyticsService,
     GooglePlacesAPIClientService,
-    RoastersService,
-    GeolocationService
+    RoastersService
   ],
   bootstrap: [AppComponent]
 })

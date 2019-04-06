@@ -4,6 +4,7 @@ declare let $: any;
 
 import { AgmCoreModule } from '@agm/core';
 
+import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service';
 import { GooglePlacesAPIClientService } from '../../../services/google-places-api-client/google-places-api-client.service';
 import { RoastersService } from '../../../services/roasters/roasters.service';
 import { Roaster } from '../../../models/roaster';
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private el: ElementRef,
     private roastersService: RoastersService,
+    private googleAnalyticsService: GoogleAnalyticsService,
     private googlePlacesAPIClientService: GooglePlacesAPIClientService,
     private connectivityService: ConnectivityService,
     private geolocationService: GeolocationService) { }
@@ -111,5 +113,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           roaster.googlePlace = googlePlace;
         });
     }
+    this.googleAnalyticsService.eventEmitter('roasters', 'viewDetails', roaster.googlePlaceId, 1);
   }
 }
