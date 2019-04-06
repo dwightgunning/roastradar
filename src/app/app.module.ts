@@ -23,6 +23,7 @@ import { ConnectivityService } from './services/connectivity/connectivity.servic
 import { RoastersService } from './services/roasters/roasters.service';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
 import { GeolocationService } from './services/geolocation/geolocation.service';
+import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -62,7 +63,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     AboutComponent,
     RoasterDetailsComponent,
     EncodeURIComponentPipe,
-    ContributeComponent
+    ContributeComponent,
+    TermsPrivacyComponent
   ],
   imports: [
     BrowserModule,

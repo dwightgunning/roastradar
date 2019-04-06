@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { AboutComponent } from './components/screens/about/about.component';
+import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'contribute',
     component: ContributeComponent
+  },
+  {
+    path: 'terms-privacy',
+    component: TermsPrivacyComponent
   },
   {
     path: '**',
