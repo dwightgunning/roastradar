@@ -317,5 +317,27 @@
     "country": "Spain",
     "createdAt": 1554308421734,
     "modifiedAt": 1554308421734
+  },
+{
+    "name": "Fonzie Abbott",
+    "website": "http://www.fonzieabbott.com/",
+    "googlePlaceId": "ChIJ63Cl2LBZkWsRy_d_Kr7mB7Y",
+    "lat": -27.432661,
+    "lng": 153.043054,
+    "city": "Brisbane",
+    "country": "Australia",
+    "createdAt": 1554969740252,
+    "modifiedAt": 1554969740252
+  },
+  {
+    "name": "Seven Seeds",
+    "website": "https://sevenseeds.com.au",
+    "googlePlaceId": "ChIJvdx3kjJd1moRHnjYhByshFo",
+    "lat": -37.802872,
+    "lng": 144.956927,
+    "city": "Melbourne",
+    "country": "Australia",
+    "createdAt": 1554969740252,
+    "modifiedAt": 1554969740252
   }
 ]
