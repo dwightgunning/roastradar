@@ -1,8 +1,8 @@
 {
   "name": "roastradar",
   "short_name": "Roast Radar",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#c3b186",
+  "background_color": "#c3b186",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
