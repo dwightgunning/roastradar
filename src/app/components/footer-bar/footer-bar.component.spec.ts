@@ -1,6 +1,14 @@
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterBarComponent } from './footer-bar.component';
+import { RouterTestingModule } from '@angular/router/testing';
+
+@Component({
+  template: ''
+})
+class StubComponent { }
+
 
 describe('FooterBarComponent', () => {
   let component: FooterBarComponent;
@@ -8,7 +16,15 @@ describe('FooterBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterBarComponent ]
+      declarations: [
+        FooterBarComponent,
+        StubComponent
+      ],
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: '', component: StubComponent }
+        ])
+      ]
     })
     .compileComponents();
   }));

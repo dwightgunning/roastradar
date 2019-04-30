@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { MapsAPILoader } from '@agm/core';
-import { from, Observable, of } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, from, Observable, of, Subject, throwError } from 'rxjs';
 import { filter, catchError, tap, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
@@ -11,50 +11,60 @@ import { GooglePlace } from '../../models/google-place';
   providedIn: 'root'
 })
 export class GooglePlacesAPIClientService {
-  private googlePlacesService: google.maps.places.PlacesService;
   private googlePlacesFields = ['formatted_address', 'geometry', 'icon', 'id',
                                 'name', 'permanently_closed', 'photo',
                                 'place_id', 'plus_code', 'type', 'url',
                                 'user_ratings_total', 'rating',
                                 'international_phone_number', 'opening_hours'];
+  googlePlacesServiceSubject: Subject<google.maps.places.PlacesService>;
 
-  constructor(private mapLoader: MapsAPILoader) { }
+  constructor(private mapsApiLoader: MapsAPILoader) {}
 
-  initService() {
-    this.googlePlacesService =
-      new google.maps.places.PlacesService(document.createElement('div'));
-  }
-
-  private waitForMapsToLoad(): Observable<boolean> {
-    if (!this.googlePlacesService) {
-      return from(this.mapLoader.load())
-      .pipe(
-        tap(() => this.initService()),
-        map(() => true)
-      );
-    }
-    return of(true);
+  private init() {
+    this.googlePlacesServiceSubject =
+      new AsyncSubject<google.maps.places.PlacesService>();
+    this.mapsApiLoader.load().then(
+      (result: void) => {
+        const googlePlacesService =
+          new google.maps.places.PlacesService(document.createElement('div'));
+        this.googlePlacesServiceSubject.next(googlePlacesService);
+      },
+      (reason: any) => {
+        this.googlePlacesServiceSubject.error(reason);
+      }
+    ).catch((reason: any) => {
+      this.googlePlacesServiceSubject.error(reason);
+    }).finally(() => {
+      this.googlePlacesServiceSubject.complete();
+    });
   }
 
   public getPlace(placeId: string): Observable<GooglePlace> {
-    return this.waitForMapsToLoad().pipe(
-      switchMap(() => {
+    if (!this.googlePlacesServiceSubject) {
+      this.init();
+    }
+    return this.googlePlacesServiceSubject.pipe(
+      catchError((err: any) => {
+        return throwError(err);
+      }),
+      switchMap((googlePlacesService) => {
         return new Observable<GooglePlace>(observer => {
-          this.googlePlacesService.getDetails({
+            googlePlacesService.getDetails({
               placeId,
               fields: this.googlePlacesFields
-            }, (result, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
+            },
+            (result, status) => {
+              if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                observer.error(status);
+              }
               observer.next(Object.assign({}, result));
-            } else {
-                console.log('Error - ', result, ' & Status - ', status); // TODO: Handle error appropriately
-                observer.next({});
-            }
-            observer.complete();
-          });
-        });
+              observer.complete();
+            });
+        }).pipe(
+          catchError((err: any) => {
+            return throwError(err);
+          }));
       })
     );
   }
-
 }

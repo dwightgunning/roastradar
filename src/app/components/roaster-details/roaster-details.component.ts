@@ -15,7 +15,7 @@ export class RoasterDetailsComponent {
   constructor(private googleAnalyticsService: GoogleAnalyticsService) { }
 
   onRoasterLinkClick(link) {
-    this.googleAnalyticsService.eventEmitter(
+    this.googleAnalyticsService.sendEvent(
       'roasters', 'link-click-' + link, this.roaster.googlePlaceId, 1);
   }
 

@@ -2,8 +2,6 @@ import { AfterViewInit, Component, EventEmitter, ElementRef, Input, OnInit } fro
 
 declare let $: any;
 
-import { AgmCoreModule } from '@agm/core';
-
 import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service';
 import { GooglePlacesAPIClientService } from '../../../services/google-places-api-client/google-places-api-client.service';
 import { RoastersService } from '../../../services/roasters/roasters.service';
@@ -90,11 +88,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.mode = this.isConnected ? 'map' : 'list';
     });
 
-    this.geolocationService.locationChange().subscribe(
+    this.geolocationService.getCurrentPosition().subscribe(
+      // TODO: Tests for location unavailable and errors
       location => {
-        this.lat = location.coords.latitude;
-        this.lng = location.coords.longitude;
-        this.roasterMapZoom = 7;
+        if (location) {
+          this.lat = location.coords.latitude;
+          this.lng = location.coords.longitude;
+          this.roasterMapZoom = 7;
+        }
       });
   }
 
@@ -113,6 +114,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           roaster.googlePlace = googlePlace;
         });
     }
-    this.googleAnalyticsService.eventEmitter('roasters', 'viewDetails', roaster.googlePlaceId, 1);
+    this.googleAnalyticsService.sendEvent('roasters', 'viewDetails', roaster.googlePlaceId, 1);
   }
 }

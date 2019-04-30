@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +10,20 @@ export class GeolocationService {
     this.geolocationEnabled = 'geolocation' in navigator;
   }
 
-  public locationChange(): Observable<any> {
-    return Observable.create(observer => {
-        if (this.geolocationEnabled) {
-          navigator.geolocation.getCurrentPosition(
-              position => {
-                  observer.next(position);
-                  observer.complete();
-              },
-              observer.error.bind(observer)
-          );
-        } else {
-          observer.complete();
-        }
+  public getCurrentPosition(): Observable<any> {
+    if (this.geolocationEnabled) {
+      // Use `create` due to getCurrentPositions' atypical signature
+      return Observable.create(observer => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                observer.next(position);
+                observer.complete();
+            },
+            observer.error.bind(observer)
+        );
       });
+    } else {
+      return of(null);
+    }
   }
 }

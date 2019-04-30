@@ -1,18 +1,29 @@
 import { APP_BASE_HREF } from '@angular/common';
-import { AppRoutingModule } from './app-routing.module';
 import { TestBed, async } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AgmCoreModule } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 import { AboutComponent } from './components/screens/about/about.component';
 import { AppComponent } from './app.component';
+import { ContributeComponent } from './components/screens/contribute/contribute.component';
 import { environment } from '../environments/environment';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 import { HomeComponent } from './components/screens/home/home.component';
 import { RoasterDetailsComponent } from './components/roaster-details/roaster-details.component';
+import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost'
+  }
+};
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,19 +33,24 @@ describe('AppComponent', () => {
         AgmCoreModule.forRoot({
           apiKey: environment.GOOGLE_MAPS_API_KEY
         }),
-        RouterTestingModule
+        AgmJsMarkerClustererModule,
+        FormsModule,
+        RouterTestingModule,
+        NgcCookieConsentModule.forRoot(cookieConfig)
       ],
       declarations: [
         AppComponent,
+        ContributeComponent,
         HomeComponent,
         TopNavBarComponent,
         FooterBarComponent,
         AboutComponent,
         EncodeURIComponentPipe,
-        RoasterDetailsComponent
+        RoasterDetailsComponent,
+        TermsPrivacyComponent
       ],
       providers: [
-        {provide: APP_BASE_HREF, useValue: '/'},
+        {provide: APP_BASE_HREF, useValue: '/'}
       ]
     }).compileComponents();
   }));

@@ -12,19 +12,14 @@ import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsen
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { GooglePlacesAPIClientService } from './services/google-places-api-client/google-places-api-client.service';
 import { HomeComponent } from './components/screens/home/home.component';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
 import { AboutComponent } from './components/screens/about/about.component';
 import { RoasterDetailsComponent } from './components/roaster-details/roaster-details.component';
 import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
-import { ConnectivityService } from './services/connectivity/connectivity.service';
-import { RoastersService } from './services/roasters/roasters.service';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
-import { GeolocationService } from './services/geolocation/geolocation.service';
 import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
-import { GoogleAnalyticsService } from './services/google-analytics/google-analytics.service';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -79,13 +74,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     HttpClientModule,
     NgcCookieConsentModule.forRoot(cookieConfig),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-  ],
-  providers: [
-    ConnectivityService,
-    GeolocationService,
-    GoogleAnalyticsService,
-    GooglePlacesAPIClientService,
-    RoastersService
   ],
   bootstrap: [AppComponent]
 })

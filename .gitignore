@@ -21,3 +21,4 @@ yarn-error.log
 
 # Local files containing secrets/keys etc.
 src/environments/environment*.ts
+.env
