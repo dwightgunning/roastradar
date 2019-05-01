@@ -1,4 +1,4 @@
-@import '../../../assets/foundation-sites/_settings';
+@import '../../../assets/foundation-sites/settings';
 
 .top-bar {
   color: $white;
@@ -8,21 +8,23 @@
     color: $white;
   }
 
-  .top-bar-right {
-    li:hover, a.active-link {
-      background: rgba(255,255,255,0.5);
+  .menu-text {
+    h1 > a {
+      color: $white;
+      font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
     }
   }
 
   .top-bar-right {
-    a.active-link {
-      background: rgba(255,255,255,0.25);
+    li {
+      :hover {
+        background: change-color($white, $alpha: 0.5);
+      }
     }
-  }
 
-  li.menu-text h1 > a {
-    color: $white;
-    font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
+    .active-link {
+      background: change-color($white, $alpha: 0.25);
+    }
   }
 
 }

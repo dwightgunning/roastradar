@@ -1,4 +1,4 @@
-@import '../../../assets/foundation-sites/_settings';
+@import '../../../assets/foundation-sites/settings';
 
 .roaster-details {
   background-color: $white;
@@ -8,13 +8,14 @@
   h3 {
     font-size: rem-calc(map-deep-get($header-styles, small, h3, font-size));
   }
+
   h4 {
     font-size: rem-calc(map-deep-get($header-styles, small, h4, font-size));
   }
 
   p {
-    line-height: 1.2;
     font-size: $small-font-size;
+    line-height: 1.2;
   }
 
   .address {

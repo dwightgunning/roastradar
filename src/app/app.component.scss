@@ -1,11 +1,12 @@
-@import '../assets/foundation-sites/_settings';
+@import '../assets/foundation-sites/settings';
 
-nav, footer {
-    flex-shrink: 0;
+footer,
+nav {
+  flex-shrink: 0;
 }
 
 main {
-    flex: 1 0 auto;
-    margin-top: rem-calc(40px);
-    margin-bottom: rem-calc(40px);
+  flex: 1 0 auto;
+  margin-bottom: rem-calc(40px);
+  margin-top: rem-calc(40px);
 }

@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint && npm run lint-sass",
+    "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js -c sass-lint.yaml -v -q",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -33,6 +34,7 @@
     "js-marker-clusterer": "^1.0.0",
     "ngx-cookieconsent": "^2.2.0",
     "rxjs": "~6.3.3",
+    "sass-lint": "^1.13.1",
     "tslib": "^1.9.0",
     "webfontloader": "^1.6.28",
     "what-input": "^5.1.4",

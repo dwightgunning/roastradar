@@ -1,10 +1,10 @@
-@import '../../../assets/foundation-sites/_settings';
+@import '../../../assets/foundation-sites/settings';
 
-#footer {
+.footer {
+  background-color: get-color(primary);
   color: $white;
   height: 120px;
   padding-top: 10px;
-  background-color: #7A6856;
 
   p {
     margin-bottom: 0;
