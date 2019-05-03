@@ -39,7 +39,6 @@
               "./node_modules/foundation-sites/dist/js/foundation.js",
               "./node_modules/webfontloader/webfontloader.js"
             ],
-            "es5BrowserSupport": true
           },
           "configurations": {
             "stage": {
@@ -179,7 +178,8 @@
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
-              "**/node_modules/**"
+              "**/node_modules/**",
+              "src/**"
             ]
           }
         }
