@@ -33,6 +33,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     const roastersServiceStub = jasmine.createSpyObj('RoastersService', ['getRoasters']);
+    // tslint:disable-next-line:deprecation
     roastersServiceStub.getRoasters.and.returnValue(of(
       [
         {
@@ -63,6 +64,7 @@ describe('HomeComponent', () => {
     connectivityServiceStub = jasmine.createSpyObj('ConnectivityService', ['connectivity']);
     connectivityServiceStub.connectivity.and.returnValue(connectivitySubject);
     geolocationServiceStub = jasmine.createSpyObj('GeolocationService', ['getCurrentPosition']);
+    // tslint:disable-next-line:deprecation
     geolocationServiceStub.getCurrentPosition.and.returnValue(of({coords: {latitude: 0, longitude: 0}}));
     googleAnalyticsServiceStub = jasmine.createSpyObj('GoogleAnalyticsService', ['sendEvent']);
     googlePlacesAPIClientServiceStub = jasmine.createSpyObj('GooglePlacesAPIClientService', ['getPlace']);
@@ -124,6 +126,7 @@ describe('HomeComponent', () => {
 
   it('handles roaster click', () => {
     const expectedRoasterPlaceDetails = new GooglePlace();
+    // tslint:disable-next-line deprecation
     googlePlacesAPIClientServiceStub.getPlace.and.returnValue(of(expectedRoasterPlaceDetails));
 
     component.onRoasterClicked(component.roasters[0]);

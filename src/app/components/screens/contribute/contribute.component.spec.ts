@@ -50,7 +50,7 @@ describe('ContributeComponent', () => {
       (data) => {
         expect(submitContributionFormSpy).toHaveBeenCalledWith(expectedFormData);
         onExpectationsMet();
-        return of(testServiceResponse);
+        return of(testServiceResponse); // tslint:disable-line deprecation
       });
 
     component.submitForm();

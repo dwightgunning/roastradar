@@ -13,7 +13,7 @@ export class GeolocationService {
   public getCurrentPosition(): Observable<any> {
     if (this.geolocationEnabled) {
       // Use `create` due to getCurrentPositions' atypical signature
-      return Observable.create(observer => {
+      return new Observable(observer => {
         navigator.geolocation.getCurrentPosition(
             position => {
                 observer.next(position);
@@ -23,7 +23,7 @@ export class GeolocationService {
         );
       });
     } else {
-      return of(null);
+      return of(null); // tslint:disable-line deprecation
     }
   }
 }
