@@ -26,17 +26,23 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install && yarn install --dev
+      - run:
+          name: Install packages
+          command: yarn install && yarn install --dev
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: ./.circleci/replace-envs
+      - run:
+          name: Inject environment variables
+          command: ./.circleci/replace-envs
 
-      # lint the source
-      - run: yarn lint
+      - run:
+          name: Lint the source
+          command: yarn lint
 
-      # run tests!
-      - run: yarn test-ci
+      - run:
+          name: Run the tests
+          command: yarn test-ci
