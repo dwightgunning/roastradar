@@ -6,10 +6,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint && npm run lint-sass",
     "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js -c sass-lint.yaml -v -q",
-    "e2e": "ng e2e"
+    "test": "ng test",
+    "test-ci": "ng test --watch=false",
+    "test-e2e": "ng e2e --port=4201"
   },
   "private": true,
   "dependencies": {
@@ -58,9 +59,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.5",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.4.0",
+    "protractor": "~5.4.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
+  },
+  "engines" : {
+    "node" : ">=10.9"
   }
 }
