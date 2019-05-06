@@ -9,7 +9,7 @@
     "lint": "ng lint && npm run lint-sass",
     "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js -c sass-lint.yaml -v -q",
     "test": "ng test",
-    "test-ci": "ng test --watch=false",
+    "test-ci": "ng test --watch=false --no-progress --browsers=ChromeNoSandbox",
     "test-e2e": "ng e2e --port=4201"
   },
   "private": true,

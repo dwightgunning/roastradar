@@ -3,18 +3,13 @@
 
 module.exports = function (config) {
   config.set({
+    autoWatch: true,
     basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular-devkit/build-angular/plugins/karma')
-    ],
+    browsers: ['Chrome'],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    colors: true,
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage/roastradar'),
       reports: ['html', 'lcovonly', 'text-summary'],
@@ -26,13 +21,28 @@ module.exports = function (config) {
         functions: 100
       }
     },
-    reporters: ['progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
+    customLaunchers: {
+        ChromeNoSandbox: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        },
+        ChromeNoSandboxHeadless: {
+            base: 'ChromeHeadless',
+            flags: ['--no-sandbox']
+        }
+    },
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
-    restartOnFileChange: true
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+    port: 9876,
+    reporters: ['progress', 'kjhtml'],
+    restartOnFileChange: true,
+    singleRun: false
   });
 };
