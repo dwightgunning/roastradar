@@ -2,9 +2,9 @@
 
 touch $HOME/repo/src/environments/environment.ts
 
-yarn run replace '%COOKIE_DOMAIN%'                ${TEST_CI_COOKIE_DOMAIN}                $HOME/repo/src/environments/environment.test-ci.ts
-yarn run replace '%GOOGLE_ANALYTICS_ID%'          ${TEST_CI_GOOGLE_ANALYTICS_ID}          $HOME/repo/src/environments/environment.test-ci.ts
-yarn run replace '%GOOGLE_MAPS_API_KEY%'          ${TEST_CI_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.test-ci.ts
-yarn run replace '%CONTRIBUTION_FORM_ENDPOINT%'   ${TEST_CI_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.test-ci.ts
-yarn run replace '%CONTRIBUTION_FORM_RECIPIENT%'  ${TEST_CI_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.test-ci.ts
+node ./node_modules/.bin/replace --silent '%COOKIE_DOMAIN%'                ${TEST_CI_COOKIE_DOMAIN}                $HOME/repo/src/environments/environment.test-ci.ts
+node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${TEST_CI_GOOGLE_ANALYTICS_ID}          $HOME/repo/src/environments/environment.test-ci.ts
+node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${TEST_CI_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.test-ci.ts
+node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_ENDPOINT%'   ${TEST_CI_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.test-ci.ts
+node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_RECIPIENT%'  ${TEST_CI_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.test-ci.ts
 
