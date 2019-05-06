@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 1. Create the base environment config file that Angular-cli expects
-touch $HOME/repo/src/environments/environment.ts
+cp $HOME/repo/src/environments/environment.ts.dist $HOME/repo/src/environments/environment.ts
 
 # 2. Inject CI environment variables into the 'test-ci' environment config file.
 # IMPORTANT: --silent switch avoids exposing environment variables through CI logs
