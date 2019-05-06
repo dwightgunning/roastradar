@@ -20,5 +20,6 @@ yarn-error.log
 /e2e/*.map
 
 # Local files containing secrets/keys etc.
-src/environments/environment*.ts
+# - environments with placeholders (e.g. test-ci, prod) are in the repo
 .env
+src/environments/environment*.ts
