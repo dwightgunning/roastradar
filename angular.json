@@ -108,6 +108,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "codeCoverage": true,
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
@@ -132,12 +133,16 @@
           },
           "configurations": {
             "test-ci": {
+              "browsers": "ChromeNoSandbox",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.test-ci.ts"
                 }
               ],
+              "progress": false,
+              "reporters": ["junit"],
+              "watch": false
             }
           }
         },

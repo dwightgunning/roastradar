@@ -9,7 +9,7 @@
     "lint": "ng lint && npm run lint-sass",
     "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js -c sass-lint.yaml -v -q",
     "test": "ng test",
-    "test-ci": "ng test --configuration=test-ci --watch=false --no-progress --browsers=ChromeNoSandbox",
+    "test-ci": "ng test --configuration=test-ci",
     "test-e2e": "ng e2e --port=4201"
   },
   "private": true,
@@ -34,6 +34,7 @@
     "foundation-sites": "^6.5.3",
     "jquery": "^3.3.1",
     "js-marker-clusterer": "^1.0.0",
+    "karma-junit-reporter": "^1.2.0",
     "ngx-cookieconsent": "^2.2.0",
     "nyc": "^14.0.0",
     "rxjs": "~6.5.1",

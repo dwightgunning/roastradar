@@ -1,18 +1,11 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.4
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:10.9.0-stretch-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
 
@@ -46,3 +39,12 @@ jobs:
       - run:
           name: Run the tests
           command: yarn test-ci
+
+      - store_artifacts:
+          path: ./build_artifacts
+
+      - store_test_results:
+          path: ./build_artifacts/test-results
+
+      - codecov/upload:
+          file: ./build_artifacts/coverage/lcov.info

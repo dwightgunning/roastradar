@@ -8,11 +8,11 @@
 
 # misc
 /.sass-cache
+/build_artifacts
 /connect.lock
-/coverage
 /libpeerconnection.log
-npm-debug.log
 /typings
+npm-debug.log
 yarn-error.log
 
 # e2e

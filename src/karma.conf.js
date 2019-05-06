@@ -11,8 +11,8 @@ module.exports = function (config) {
     },
     colors: true,
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/roastradar'),
-      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: require('path').join(__dirname, '../build_artifacts/coverage'),
+      reports: ['html', 'json', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
       thresholds: {
         statements: 100,
@@ -32,16 +32,20 @@ module.exports = function (config) {
         }
     },
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    junitReporter: {
+      outputDir: require('path').join(__dirname, '../build_artifacts/test-results/junit/')
+    },
     logLevel: config.LOG_INFO,
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
+      require('karma-junit-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     port: 9876,
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['kjhtml', 'progress'],
     restartOnFileChange: true,
     singleRun: false
   });
