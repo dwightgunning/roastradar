@@ -14,6 +14,6 @@ export class RoastersService {
 
   public getRoasters(): Observable<Roaster[]> {
     const dataUrl = 'data.json';
-    return from(this.httpClient.get<Roaster[]>(dataUrl));
+    return this.httpClient.get<Roaster[]>(dataUrl);
   }
 }
