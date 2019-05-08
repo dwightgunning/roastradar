@@ -61,6 +61,9 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Inject environment variables
+          command: ./.circleci/replace-envs-prod
+      - run:
           name: Build the source (prod)
           command: yarn build --configuration=production
       - persist_to_workspace:
@@ -118,6 +121,7 @@ workflows:
           requires:
             - build
       - build-prod:
+          context: aws
           requires:
             - test
       - deploy-stage:
