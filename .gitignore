@@ -1,8 +1,9 @@
 # compiled output
 /dist
 /dist-prod
-/tmp
+/dist-stage
 /out-tsc
+/tmp
 
 # dependencies
 /node_modules

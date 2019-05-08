@@ -7,6 +7,12 @@ fi
 
 # 2. Inject CI environment variables into the 'test-ci' environment config file.
 # IMPORTANT: --silent switch avoids exposing environment variables through CI logs
+node ./node_modules/.bin/replace --silent '%COOKIE_DOMAIN%'                ${STAGE_COOKIE_DOMAIN}                $HOME/repo/src/environments/environment.stage.ts
+node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${STAGE_GOOGLE_ANALYTICS_ID}          $HOME/repo/src/environments/environment.stage.ts
+node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${STAGE_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.stage.ts
+node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_ENDPOINT%'   ${STAGE_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.stage.ts
+node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_RECIPIENT%'  ${STAGE_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.stage.ts
+
 node ./node_modules/.bin/replace --silent '%COOKIE_DOMAIN%'                ${PROD_COOKIE_DOMAIN}                $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${PROD_GOOGLE_ANALYTICS_ID}          $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${PROD_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.prod.ts

@@ -53,7 +53,7 @@ jobs:
           path: ./build_artifacts/test-results
       - codecov/upload:
           file: ./build_artifacts/coverage/lcov.info
-  build-prod:
+  build-stage-prod:
     docker:
       - image: circleci/node:10.9.0-stretch
     working_directory: ~/repo
@@ -62,7 +62,10 @@ jobs:
           at: .
       - run:
           name: Inject environment variables
-          command: ./.circleci/replace-envs-prod
+          command: ./.circleci/replace-envs-stage-prod
+      - run:
+          name: Build the source (stage)
+          command: yarn build --configuration=stage
       - run:
           name: Build the source (prod)
           command: yarn build --configuration=production
@@ -81,7 +84,7 @@ jobs:
           configure-default-region: false
       - run:
           name: Sync build to S3 Bucket
-          command: aws s3 cp ./dist/roastradar s3://${STAGE_AWS_S3_BUCKET_NAME} --recursive
+          command: aws s3 cp ./dist-stage/roastradar s3://${STAGE_AWS_S3_BUCKET_NAME} --recursive
       - run:
           name: Invalidate CloudFront Distribution
           command: aws cloudfront create-invalidation --distribution-id ${STAGE_AWS_CLOUDFRONT_DISTRIBUTION_ID} --paths /
@@ -120,14 +123,14 @@ workflows:
       - test:
           requires:
             - build
-      - build-prod:
+      - build-stage-prod:
           context: aws
           requires:
             - test
       - deploy-stage:
           context: aws
           requires:
-            - build-prod
+            - build-stage-prod
       - approve-staging:
           type: approval
           requires:
