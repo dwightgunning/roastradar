@@ -78,7 +78,7 @@
               "optimization": true,
               "outputHashing": "all",
               "progress": false,
-              "sourceMap": false,
+              "sourceMap": true, // Source maps for staging
               "extractCss": true,
               "namedChunks": false,
               "aot": true,

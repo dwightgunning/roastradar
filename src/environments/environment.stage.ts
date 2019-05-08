@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true, // Stage should behave like production
   COOKIE_DOMAIN: '%COOKIE_DOMAIN%',
   GOOGLE_ANALYTICS_ID: '%GOOGLE_ANALYTICS_ID%',
   GOOGLE_MAPS_API_KEY: '%GOOGLE_MAPS_API_KEY%',
