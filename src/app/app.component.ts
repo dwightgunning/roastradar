@@ -10,9 +10,8 @@ declare let $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Roast Radar';
-  initializeSubscription;
 
+  // TODO: E2E test for cookie consent dialog
   constructor(private ccService: NgcCookieConsentService) {}
 
   ngOnInit() {
