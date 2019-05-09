@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ConnectableObservable, Observable } from 'rxjs';
-import { multicast, publishReplay } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,42 +10,39 @@ import { multicast, publishReplay } from 'rxjs/operators';
 export class ConnectivityService {
   public static readonly OFFLINE_EVENT = 'offline';
   public static readonly ONLINE_EVENT = 'online';
-  private connectivityMonitor: Observable<boolean>;
+  private connectedStatus: Observable<boolean>;
   private connectivityObserver: ConnectableObservable<boolean>;
 
   constructor() { }
 
   initConnectivityObserver() {
-    this.connectivityMonitor = new Observable(
+
+    this.connectedStatus = new Observable(
       (connectivityStateObserver) => {
-        const offlineEventListener = () => {
-          connectivityStateObserver.next(false); // Browser offline -> connectivity: false
-        };
-        const onlineEventListener = () => {
-          connectivityStateObserver.next(true); // Browser online -> connectivity: true
-        };
+        // Setup online/offline event listeners to emit new connectivity state
+        const setNewConnectivityState = connectionState => () => connectivityStateObserver.next(connectionState);
+        window.addEventListener(ConnectivityService.OFFLINE_EVENT, setNewConnectivityState(false));
+        window.addEventListener(ConnectivityService.ONLINE_EVENT, setNewConnectivityState(true));
 
-        window.addEventListener(ConnectivityService.OFFLINE_EVENT, offlineEventListener);
-        window.addEventListener(ConnectivityService.ONLINE_EVENT, onlineEventListener);
-
-        // Emit the current connectivity
+        // Emit the current connectivity state
         connectivityStateObserver.next(navigator.onLine);
+
         return () => {
-          window.removeEventListener(ConnectivityService.OFFLINE_EVENT, offlineEventListener);
-          window.removeEventListener(ConnectivityService.ONLINE_EVENT, onlineEventListener);
+          window.removeEventListener(ConnectivityService.OFFLINE_EVENT, setNewConnectivityState);
+          window.removeEventListener(ConnectivityService.ONLINE_EVENT, setNewConnectivityState);
         };
       }
     );
 
     // Publish a multicast ReplaySubject that emits the most recent connectivity status
-    this.connectivityObserver = this.connectivityMonitor.pipe(publishReplay(1)) as ConnectableObservable<boolean>;
-    this.connectivityObserver.connect();
+    this.connectivityObserver = this.connectedStatus.pipe(
+      shareReplay({bufferSize: 1, refCount: true})) as ConnectableObservable<boolean>;
   }
 
   connectivity(): Observable<boolean> {
     if (!this.connectivityObserver) {
       this.initConnectivityObserver();
     }
-    return this.connectivityObserver.refCount();
+    return this.connectivityObserver;
   }
 }
