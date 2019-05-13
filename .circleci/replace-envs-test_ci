@@ -13,3 +13,4 @@ node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${TES
 node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${TEST_CI_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.test-ci.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_ENDPOINT%'   ${TEST_CI_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.test-ci.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_RECIPIENT%'  ${TEST_CI_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.test-ci.ts
+

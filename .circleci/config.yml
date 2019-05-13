@@ -25,7 +25,7 @@ jobs:
 
       - run:
           name: Inject environment variables
-          command: ./.circleci/replace-envs
+          command: ./.circleci/replace-envs-test_ci
 
       - run:
           name: Build the source (dev)
