@@ -1,25 +1,31 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
-import { AgmCoreModule } from '@agm/core';
-import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { BehaviorSubject, of } from 'rxjs';
 
-import { AboutComponent } from '../about/about.component';
-import { AppRoutingModule } from '../../../app-routing.module';
-import { ContributeComponent } from '../contribute/contribute.component';
 import { EncodeURIComponentPipe } from '../../../pipes/encode-uricomponent.pipe';
-import { environment } from '../../../../environments/environment';
 import { HomeComponent } from './home.component';
-import { RoasterDetailsComponent } from '../../roaster-details/roaster-details.component';
-import { TermsPrivacyComponent } from '../terms-privacy/terms-privacy.component';
-import { GooglePlace } from '../../../models/google-place';
-import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service';
-import { GooglePlacesAPIClientService } from '../../../services/google-places-api-client/google-places-api-client.service';
+import { Roaster } from '../../../models/roaster';
 import { RoastersService } from '../../../services/roasters/roasters.service';
 import { ConnectivityService } from '../../../services/connectivity/connectivity.service';
-import { GeolocationService } from '../../../services/geolocation/geolocation.service';
+
+@Component({
+  selector: 'app-roaster-map',
+  template: ''
+})
+class StubRoasterMapComponent {
+  @Input() roasters = new Array<Roaster>();
+  @Input() selectedRoaster = new Roaster();
+}
+
+@Component({
+  selector: 'app-roaster-list',
+  template: ''
+})
+class StubRoasterListComponent {
+  @Input() roasters = new Array<Roaster>();
+  @Input() selectedRoaster = new Roaster();
+}
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -27,14 +33,11 @@ describe('HomeComponent', () => {
 
   let connectivitySubject;
   let connectivityServiceStub;
-  let geolocationServiceStub;
-  let googleAnalyticsServiceStub;
-  let googlePlacesAPIClientServiceStub;
 
   beforeEach(async(() => {
-    const roastersServiceStub = jasmine.createSpyObj('RoastersService', ['getRoasters']);
+    const roastersServiceSpy = jasmine.createSpyObj('RoastersService', ['getRoasters']);
     // tslint:disable-next-line:deprecation
-    roastersServiceStub.getRoasters.and.returnValue(of(
+    roastersServiceSpy.getRoasters.and.returnValue(of(
       [
         {
           name: 'Screaming Beans',
@@ -63,54 +66,23 @@ describe('HomeComponent', () => {
     connectivitySubject = new BehaviorSubject(true);
     connectivityServiceStub = jasmine.createSpyObj('ConnectivityService', ['connectivity']);
     connectivityServiceStub.connectivity.and.returnValue(connectivitySubject);
-    geolocationServiceStub = jasmine.createSpyObj('GeolocationService', ['getCurrentPosition']);
-    // tslint:disable-next-line:deprecation
-    geolocationServiceStub.getCurrentPosition.and.returnValue(of({coords: {latitude: 0, longitude: 0}}));
-    googleAnalyticsServiceStub = jasmine.createSpyObj('GoogleAnalyticsService', ['sendEvent']);
-    googlePlacesAPIClientServiceStub = jasmine.createSpyObj('GooglePlacesAPIClientService', ['getPlace']);
 
     TestBed.configureTestingModule({
-      imports: [
-        AgmCoreModule.forRoot({
-          apiKey: environment.GOOGLE_MAPS_API_KEY
-        }),
-        AgmJsMarkerClustererModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule
-      ],
       declarations: [
-        AboutComponent,
-        ContributeComponent,
-        EncodeURIComponentPipe,
         HomeComponent,
-        RoasterDetailsComponent,
-        TermsPrivacyComponent
+        StubRoasterMapComponent,
+        StubRoasterListComponent
       ],
       providers: [
-        {provide: RoastersService, useValue: roastersServiceStub },
-        {provide: GoogleAnalyticsService, useValue: googleAnalyticsServiceStub },
-        {provide: GooglePlacesAPIClientService, useValue: googlePlacesAPIClientServiceStub },
-        {provide: ConnectivityService, useValue: connectivityServiceStub },
-        {provide: GeolocationService, useValue: geolocationServiceStub }
+        {provide: RoastersService, useValue: roastersServiceSpy },
+        {provide: ConnectivityService, useValue: connectivityServiceStub }
       ]
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
-    // TODO: Clean this business up... I think we should be stubbing the service?
-    (window as any).ga = jasmine.createSpy('ga');
-
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    (window as any).ga = undefined;
-  });
-
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -118,20 +90,16 @@ describe('HomeComponent', () => {
     expect(component.mode).toEqual('map');
   });
 
+  it('retrieves roasters', () => {
+    expect(component).toBeTruthy();
+    const roastersServiceSpy = TestBed.get(RoastersService);
+    expect(roastersServiceSpy.getRoasters).toHaveBeenCalledTimes(1);
+  });
+
   it('handles disconnection', () => {
     connectivitySubject.next(false);
     expect(component.isConnected).toBeFalsy();
     expect(component.mode).toEqual('list');
-  });
-
-  it('handles roaster click', () => {
-    const expectedRoasterPlaceDetails = new GooglePlace();
-    // tslint:disable-next-line deprecation
-    googlePlacesAPIClientServiceStub.getPlace.and.returnValue(of(expectedRoasterPlaceDetails));
-
-    component.onRoasterClicked(component.roasters[0]);
-    expect(googleAnalyticsServiceStub.sendEvent).toHaveBeenCalledTimes(1);
-    expect(component.roasters[0].googlePlace).toEqual(expectedRoasterPlaceDetails);
   });
 
 });

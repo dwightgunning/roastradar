@@ -11,4 +11,10 @@ export class Roaster {
   googlePlace?: GooglePlace;
   createdAt: Date;
   modifiedAt: Date;
+
+  constructor(obj?: any) {
+    if (obj) {
+      Object.assign(this, obj);
+    }
+  }
 }

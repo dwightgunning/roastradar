@@ -1,0 +1,27 @@
+<div class="roaster-map off-canvas-wrapper">
+  <div id="roaster-details-canvas" class="off-canvas-absolute position-left" data-off-canvas data-close-on-click="false" data-auto-focus="false" data-content-overlay="false">
+    <app-roaster-details  [(roaster)]="selectedRoaster"></app-roaster-details>
+  </div>
+  <div data-off-canvas-content>
+    <agm-map
+      [disableDefaultUI]="true"
+      [latitude]="lat"
+      [longitude]="lng"
+      [streetViewControl]="false"
+      [styles]="mapStyles"
+      [zoom]="roasterMapZoom"
+      [usePanning]="true"
+      [zoomControl]="false">
+      <agm-marker-cluster [imagePath]="'/assets/images/map-markers/m'">
+        <agm-marker
+          *ngFor="let roaster of roasters"
+          [latitude]="roaster.lat"
+          [longitude]="roaster.lng"
+          [title]="roaster.name + ', ' + roaster.city"
+          [iconUrl]="markerImageDefault"
+          (markerClick)="onRoasterClicked(roaster)">
+        </agm-marker>
+      </agm-marker-cluster>
+    </agm-map>
+  </div>
+</div>

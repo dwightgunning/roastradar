@@ -1,0 +1,7 @@
+<p><small><em>It appears you're offline... time to ask for directions?</em></small></p>
+<div *ngFor="let item of roastersByCountry | keyvalue">
+  <h3 class="countryTitle">{{ item.key }}</h3>
+  <p class="small text-small" *ngFor="let roaster of item.value">
+    <span class="roasterName">{{ roaster.name }}</span>, {{ roaster.city }}
+  </p>
+</div>

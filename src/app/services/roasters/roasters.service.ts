@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { from, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Roaster } from '../../models/roaster';
 
@@ -14,6 +15,8 @@ export class RoastersService {
 
   public getRoasters(): Observable<Roaster[]> {
     const dataUrl = 'data.json';
-    return this.httpClient.get<Roaster[]>(dataUrl);
+    return this.httpClient.get<Roaster[]>(dataUrl).pipe(
+      map(roasters => roasters.map((roasterObj) => new Roaster(roasterObj)))
+    );
   }
 }

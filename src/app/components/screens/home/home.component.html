@@ -1,37 +1,3 @@
 <h3 class="lead">Specialty Coffee: Nearest and best-est.</h3>
-<div class="roaster-map off-canvas-wrapper" *ngIf="mode == 'map'">
-  <div id="roaster-details-canvas" class="off-canvas-absolute position-left" data-off-canvas data-close-on-click="false" data-auto-focus="false" data-content-overlay="false">
-    <app-roaster-details  [(roaster)]="selectedRoaster"></app-roaster-details>
-  </div>
-  <div data-off-canvas-content>
-    <agm-map
-      [disableDefaultUI]="true"
-      [latitude]="lat"
-      [longitude]="lng"
-      [streetViewControl]="false"
-      [styles]="mapStyles"
-      [zoom]="roasterMapZoom"
-      [usePanning]="true"
-      [zoomControl]="false">
-      <agm-marker-cluster [imagePath]="'/assets/images/map-markers/m'">
-        <agm-marker
-          *ngFor="let roaster of roasters"
-          [latitude]="roaster.lat"
-          [longitude]="roaster.lng"
-          [title]="roaster.name + ', ' + roaster.city"
-          [iconUrl]="markerImageDefault"
-          (markerClick)="onRoasterClicked(roaster)">
-        </agm-marker>
-      </agm-marker-cluster>
-    </agm-map>
-  </div>
-</div>
-<div *ngIf="mode == 'list'">
-  <p><small><em>It appears you're offline... time to ask for directions?</em></small></p>
-  <div *ngFor="let item of roastersByCountry | keyvalue">
-    <h3>{{ item.key }}</h3>
-    <p class="small text-small" *ngFor="let roaster of item.value">
-      {{ roaster.name }}, {{ roaster.city }}
-    </p>
-  </div>
-</div>
+<app-roaster-map  *ngIf="mode == 'map'" [(roasters)]="roasters" [(selectedRoaster)]="selectedRoaster"></app-roaster-map>
+<app-roaster-list *ngIf="mode == 'list'" [(roasters)]="roasters" [(selectedRoaster)]="selectedRoaster"></app-roaster-list>

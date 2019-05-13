@@ -20,6 +20,8 @@ import { RoasterDetailsComponent } from './components/roaster-details/roaster-de
 import { EncodeURIComponentPipe } from './pipes/encode-uricomponent.pipe';
 import { ContributeComponent } from './components/screens/contribute/contribute.component';
 import { TermsPrivacyComponent } from './components/screens/terms-privacy/terms-privacy.component';
+import { RoasterMapComponent } from './components/roaster-map/roaster-map.component';
+import { RoasterListComponent } from './components/roaster-list/roaster-list.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -52,15 +54,17 @@ const cookieConfig: NgcCookieConsentConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    TopNavBarComponent,
-    FooterBarComponent,
     AboutComponent,
-    RoasterDetailsComponent,
-    EncodeURIComponentPipe,
+    AppComponent,
     ContributeComponent,
-    TermsPrivacyComponent
+    EncodeURIComponentPipe,
+    FooterBarComponent,
+    HomeComponent,
+    RoasterDetailsComponent,
+    RoasterListComponent,
+    RoasterMapComponent,
+    TermsPrivacyComponent,
+    TopNavBarComponent
   ],
   imports: [
     BrowserModule,
