@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 
 declare let $: any;
+import * as Sentry from '@sentry/browser';
 
 import { GoogleAnalyticsService } from '../../services/google-analytics/google-analytics.service';
 import { GooglePlacesAPIClientService } from '../../services/google-places-api-client/google-places-api-client.service';
@@ -81,7 +82,7 @@ export class RoasterMapComponent implements OnInit, AfterViewInit  {
         }
       },
       error => {
-
+        Sentry.captureException(error);
       });
   }
 

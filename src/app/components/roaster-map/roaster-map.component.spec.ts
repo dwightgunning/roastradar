@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import * as Sentry from '@sentry/browser';
 
 import { ConnectivityService } from '../../services/connectivity/connectivity.service';
 import { environment } from '../../../environments/environment';
@@ -66,8 +67,13 @@ describe('RoasterMapComponent', () => {
   }));
 
   describe('geolocation error on intialisation', () => {
+    let captureExceptionSpy;
+    let sentryCaptureExceptionSpy;
 
     beforeEach(() => {
+      captureExceptionSpy = jasmine.createSpy('captureException');
+      sentryCaptureExceptionSpy = spyOnProperty(Sentry, 'captureException', 'get').and.returnValue(captureExceptionSpy);
+
       connectivityServiceStub.connectivity.and.returnValue(connectivitySubject);
       // tslint:disable-next-line:deprecation
       geolocationServiceStub.getCurrentPosition.and.returnValue(throwError(null));
@@ -82,12 +88,18 @@ describe('RoasterMapComponent', () => {
       expect(component.lat).toEqual(RoasterMapComponent.DEFAULT_LAT);
       expect(component.lat).toEqual(RoasterMapComponent.DEFAULT_LAT);
       expect(component.roasterMapZoom).toEqual(RoasterMapComponent.DEFAULT_ZOOM);
+
+      expect(sentryCaptureExceptionSpy).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('disabled geolocation on intialisation', () => {
-
+    let captureExceptionSpy;
+    let sentryCaptureExceptionSpy;
     beforeEach(() => {
+      captureExceptionSpy = jasmine.createSpy('captureException');
+      sentryCaptureExceptionSpy = spyOnProperty(Sentry, 'captureException', 'get');
+
       connectivityServiceStub.connectivity.and.returnValue(connectivitySubject);
       // tslint:disable-next-line:deprecation
       geolocationServiceStub.getCurrentPosition.and.returnValue(of(null));
@@ -102,6 +114,8 @@ describe('RoasterMapComponent', () => {
       expect(component.lat).toEqual(RoasterMapComponent.DEFAULT_LAT);
       expect(component.lat).toEqual(RoasterMapComponent.DEFAULT_LAT);
       expect(component.roasterMapZoom).toEqual(RoasterMapComponent.DEFAULT_ZOOM);
+
+      expect(sentryCaptureExceptionSpy).toHaveBeenCalledTimes(0);
     });
   });
 

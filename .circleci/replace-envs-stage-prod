@@ -12,9 +12,11 @@ node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${STA
 node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${STAGE_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.stage.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_ENDPOINT%'   ${STAGE_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.stage.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_RECIPIENT%'  ${STAGE_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.stage.ts
+node ./node_modules/.bin/replace --silent '%SENTRY_DSN_PUBLIC%'            ${STAGE_SENTRY_DSN_PUBLIC}            $HOME/repo/src/environments/environment.stage.ts
 
 node ./node_modules/.bin/replace --silent '%COOKIE_DOMAIN%'                ${PROD_COOKIE_DOMAIN}                $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%GOOGLE_ANALYTICS_ID%'          ${PROD_GOOGLE_ANALYTICS_ID}          $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%GOOGLE_MAPS_API_KEY%'          ${PROD_GOOGLE_MAPS_API_KEY}          $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_ENDPOINT%'   ${PROD_CONTRIBUTION_FORM_ENDPOINT}   $HOME/repo/src/environments/environment.prod.ts
 node ./node_modules/.bin/replace --silent '%CONTRIBUTION_FORM_RECIPIENT%'  ${PROD_CONTRIBUTION_FORM_RECIPIENT}  $HOME/repo/src/environments/environment.prod.ts
+node ./node_modules/.bin/replace --silent '%SENTRY_DSN_PUBLIC%'            ${PROD_SENTRY_DSN_PUBLIC}            $HOME/repo/src/environments/environment.prod.ts

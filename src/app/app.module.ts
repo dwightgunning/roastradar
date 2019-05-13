@@ -6,8 +6,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AgmCoreModule } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import { init as sentryInit } from '@sentry/browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +51,10 @@ const cookieConfig: NgcCookieConsentConfig = {
     policy: 'Cookie Policy'
   }
 };
+
+sentryInit({
+  dsn: environment.SENTRY_DSN_PUBLIC
+});
 
 @NgModule({
   declarations: [
