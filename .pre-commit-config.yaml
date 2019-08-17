@@ -1,9 +1,6 @@
+repos:
 -   repo: git://github.com/elidupuis/mirrors-sass-lint
     rev: 5cc45653263b423398e4af2561fae362903dd45d
     hooks:
     -   id: sass-lint
         args: [-c,sass-lint.yaml, -q, -v]
--   repo: git://github.com/dwightgunning/pre-commit-nglint/
-    rev: d9221d4f240883e84b8a166fb024f535783bdf98
-    hooks:
-    -   id: nglint
