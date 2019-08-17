@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GeolocationService } from './geolocation.service';
 
+
 describe('GeolocationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
@@ -46,7 +47,7 @@ describe('GeolocationService', () => {
   it('should emit null when location unsuccessfully retrieved', (onExpectationsMet) => {
     const getCurrentPositionSpy = spyOn(navigator.geolocation, 'getCurrentPosition');
     getCurrentPositionSpy.and.callFake(
-      (success, error) => error({code: 1, message: 'Error', PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3})
+      (success, error) => error(null)
     );
     const service: GeolocationService = TestBed.get(GeolocationService);
     service.getCurrentPosition().subscribe(
