@@ -2,6 +2,9 @@ import { AfterViewInit, Component, EventEmitter, ElementRef, Input, OnInit } fro
 
 declare let $: any;
 
+import { ReplaySubject } from 'rxjs';
+import { LatLngBounds } from '@agm/core/services/google-maps-types';
+
 import { GoogleAnalyticsService } from '../../../services/google-analytics/google-analytics.service';
 import { GooglePlacesAPIClientService } from '../../../services/google-places-api-client/google-places-api-client.service';
 import { RoastersService } from '../../../services/roasters/roasters.service';
@@ -16,11 +19,14 @@ import { GeolocationService } from '../../../services/geolocation/geolocation.se
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  protected map: any;
   mode = 'map';
   isConnected: boolean;
   roastersByCountry;
   roasters: Array<Roaster>;
   roasterDetailsCanvas: any;
+  positionSubj = new ReplaySubject<Position>(1);
+  @Input() selectedRoaster: Roaster;
 
   markerImageDefault = {
     url: 'assets/images/map-markers/pin-solid.svg',
@@ -29,11 +35,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       width: 20
     }
   };
-  @Input() selectedRoaster: Roaster;
-  lat = 35.784;
-  lng = -90;
-  roasterMapZoom = 2;
-
   mapStyles = [
     {
       featureType: 'all',
@@ -71,32 +72,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private geolocationService: GeolocationService) { }
 
   ngOnInit() {
-    if (!this.roasters) {
-      this.roastersService.getRoasters().subscribe(response => {
-        this.roasters = response;
-        // Reduce list to an object keyed by country
-        this.roastersByCountry = this.roasters.reduce((acc, curVal) => {
-            acc[curVal.country] = [...acc[acc.country] || [], curVal];
-            return acc;
-          }, Object.create(null));
-      });
-    }
+    this.roastersService.getRoasters().subscribe(response => {
+      this.roasters = response;
+      // Reduce list to an object keyed by country
+      this.roastersByCountry = this.roasters.reduce((acc, curVal) => {
+          acc[curVal.country] = [...acc[acc.country] || [], curVal];
+          return acc;
+        }, Object.create(null));
+    });
 
     this.connectivityService.connectivity().subscribe(isConnected => {
       this.isConnected = isConnected;
       // TODO: prompt the user to confirm they want to toggle the map/list
       this.mode = this.isConnected ? 'map' : 'list';
     });
-
-    this.geolocationService.getCurrentPosition().subscribe(
-      // TODO: Tests for location unavailable and errors
-      location => {
-        if (location) {
-          this.lat = location.coords.latitude;
-          this.lng = location.coords.longitude;
-          this.roasterMapZoom = 7;
-        }
-      });
   }
 
   ngAfterViewInit() {
@@ -104,7 +93,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.roasterDetailsCanvas = $('#roaster-details-canvas');
   }
 
-  onRoasterClicked(roaster: Roaster) {
+  onNearbyRoastersClick(event: Event) {
+    this.geolocationService.getCurrentPosition().subscribe(position => this.positionSubj.next(position));
+  }
+
+  onRoasterClick(roaster: Roaster) {
     this.roasterDetailsCanvas.foundation('open');
 
     this.selectedRoaster = roaster;

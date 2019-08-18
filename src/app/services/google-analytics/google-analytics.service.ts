@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 
+import { filter } from 'rxjs/operators';
+
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -13,11 +15,9 @@ export class GoogleAnalyticsService {
     (window as any).ga('create', environment.GOOGLE_ANALYTICS_ID, 'auto');
 
     // Subscribe to routing events
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        (window as any).ga('set', 'page', event.urlAfterRedirects);
-        (window as any).ga('send', 'pageview');
-      }
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+      (window as any).ga('set', 'page', event.urlAfterRedirects);
+      (window as any).ga('send', 'pageview');
     });
   }
 

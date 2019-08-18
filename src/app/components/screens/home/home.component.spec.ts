@@ -64,8 +64,6 @@ describe('HomeComponent', () => {
     connectivityServiceStub = jasmine.createSpyObj('ConnectivityService', ['connectivity']);
     connectivityServiceStub.connectivity.and.returnValue(connectivitySubject);
     geolocationServiceStub = jasmine.createSpyObj('GeolocationService', ['getCurrentPosition']);
-    // tslint:disable-next-line:deprecation
-    geolocationServiceStub.getCurrentPosition.and.returnValue(of({coords: {latitude: 0, longitude: 0}}));
     googleAnalyticsServiceStub = jasmine.createSpyObj('GoogleAnalyticsService', ['sendEvent']);
     googlePlacesAPIClientServiceStub = jasmine.createSpyObj('GooglePlacesAPIClientService', ['getPlace']);
 
@@ -124,14 +122,34 @@ describe('HomeComponent', () => {
     expect(component.mode).toEqual('list');
   });
 
-  it('handles roaster click', () => {
+  it('handles "nearby roasters" button click', () => {
+    // tslint:disable-next-line deprecation
+    geolocationServiceStub.getCurrentPosition.and.returnValue(of({coords: {latitude: 0, longitude: 0}}));
+
+    component.onNearbyRoastersClick(new Event('click', {}));
+
+    expect(geolocationServiceStub.getCurrentPosition).toHaveBeenCalledTimes(1);
+
+  });
+
+  it('handles roaster click - google place not yet loaded', () => {
     const expectedRoasterPlaceDetails = new GooglePlace();
     // tslint:disable-next-line deprecation
     googlePlacesAPIClientServiceStub.getPlace.and.returnValue(of(expectedRoasterPlaceDetails));
 
-    component.onRoasterClicked(component.roasters[0]);
+    component.onRoasterClick(component.roasters[0]);
+    expect(googlePlacesAPIClientServiceStub.getPlace).toHaveBeenCalledTimes(1);
     expect(googleAnalyticsServiceStub.sendEvent).toHaveBeenCalledTimes(1);
     expect(component.roasters[0].googlePlace).toEqual(expectedRoasterPlaceDetails);
+  });
+
+  it('handles roaster click - google place already loaded', () => {
+    const expectedRoasterPlaceDetails = new GooglePlace();
+    component.roasters[0].googlePlace = expectedRoasterPlaceDetails;
+
+    component.onRoasterClick(component.roasters[0]);
+    expect(googlePlacesAPIClientServiceStub.getPlace).toHaveBeenCalledTimes(0);
+    expect(googleAnalyticsServiceStub.sendEvent).toHaveBeenCalledTimes(1);
   });
 
 });
