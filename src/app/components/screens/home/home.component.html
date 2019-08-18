@@ -1,4 +1,5 @@
 <h3 class="lead">Specialty Coffee: Nearest and best-est.</h3>
+<button class="button" type="button" (click)="onNearbyRoastersClick($event)">Nearby roasters</button>
 <div class="roaster-map off-canvas-wrapper" *ngIf="mode == 'map'">
   <div id="roaster-details-canvas" class="off-canvas-absolute position-left" data-off-canvas data-close-on-click="false" data-auto-focus="false" data-content-overlay="false">
     <app-roaster-details  [(roaster)]="selectedRoaster"></app-roaster-details>
@@ -6,12 +7,12 @@
   <div data-off-canvas-content>
     <agm-map
       [disableDefaultUI]="true"
-      [latitude]="lat"
-      [longitude]="lng"
+      [latitude]="(positionSubj | async)?.coords.latitude || 35.784"
+      [longitude]="(positionSubj | async)?.coords.longitude || -90.00"
       [streetViewControl]="false"
       [styles]="mapStyles"
-      [zoom]="roasterMapZoom"
       [usePanning]="true"
+      [zoom]="(positionSubj | async) ? 11 : 2"
       [zoomControl]="false">
       <agm-marker-cluster [imagePath]="'/assets/images/map-markers/m'">
         <agm-marker
@@ -20,7 +21,7 @@
           [longitude]="roaster.lng"
           [title]="roaster.name + ', ' + roaster.city"
           [iconUrl]="markerImageDefault"
-          (markerClick)="onRoasterClicked(roaster)">
+          (markerClick)="onRoasterClick(roaster)">
         </agm-marker>
       </agm-marker-cluster>
     </agm-map>

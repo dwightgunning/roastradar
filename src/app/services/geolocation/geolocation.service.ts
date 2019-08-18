@@ -10,16 +10,18 @@ export class GeolocationService {
     this.geolocationEnabled = 'geolocation' in navigator;
   }
 
-  public getCurrentPosition(): Observable<any> {
+  public getCurrentPosition(): Observable<Position> {
     if (this.geolocationEnabled) {
-      // Use `create` due to getCurrentPositions' atypical signature
       return new Observable(observer => {
         navigator.geolocation.getCurrentPosition(
-            position => {
+            (position: Position) => {
                 observer.next(position);
                 observer.complete();
             },
-            observer.error.bind(observer)
+            (positionError: PositionError) => {
+              observer.next(null);
+              observer.complete();
+            }
         );
       });
     } else {
