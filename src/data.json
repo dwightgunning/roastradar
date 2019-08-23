@@ -339,5 +339,16 @@
     "country": "Australia",
     "createdAt": 1554969740252,
     "modifiedAt": 1554969740252
+  },
+  {
+    "name": "Rum Baba Cafe",
+    "website": "https://www.rumbaba.nl",
+    "googlePlaceId": "ChIJOcy6S3cJxkcRC-unDhvnBHs",
+    "lat": 52.3531009,
+    "lng": 4.9244708,
+    "city": "Amsterdam",
+    "country": "The Netherlands",
+    "createdAt": 1566549757799,
+    "modifiedAt": 1566549757799
   }
 ]
