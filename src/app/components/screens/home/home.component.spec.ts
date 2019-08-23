@@ -134,7 +134,6 @@ describe('HomeComponent', () => {
 
   it('handles roaster click - google place not yet loaded', () => {
     const expectedRoasterPlaceDetails = new GooglePlace();
-    // tslint:disable-next-line deprecation
     googlePlacesAPIClientServiceStub.getPlace.and.returnValue(of(expectedRoasterPlaceDetails));
 
     component.onRoasterClick(component.roasters[0]);
